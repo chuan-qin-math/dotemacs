@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mathfraka 
+# key: fa
+# --
+\mathfrak{a}$1

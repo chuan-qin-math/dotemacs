@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: tensorproduct
+# key: tensor
+# --
+$1 \otimes_{$2} $3 

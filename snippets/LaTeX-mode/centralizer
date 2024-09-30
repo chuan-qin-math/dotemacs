@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: centralizer
+# key: centralizer
+# --
+\mathfrak{z}_{$1}($3)$0

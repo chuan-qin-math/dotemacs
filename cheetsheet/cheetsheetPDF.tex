@@ -1,0 +1,89 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\geometry{margin=1in}
+
+\title{pdf-tools Key Bindings Cheat Sheet}
+\author{Your Name}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Key Bindings Overview}
+
+This cheat sheet outlines the key bindings configured for \texttt{pdf-tools} in Emacs.
+
+\section*{General Key Bindings}
+\begin{itemize}
+    \item \textbf{Copy to clipboard:} \texttt{y} - \texttt{pdf-view-kill-ring-save}
+    \item \textbf{Next line or page:} \texttt{t} - \texttt{evil-collection-pdf-view-next-line-or-next-page}
+    \item \textbf{Previous line or page:} \texttt{s} - \texttt{evil-collection-pdf-view-previous-line-or-previous-page}
+\end{itemize}
+
+\section*{Annotations}
+\begin{itemize}
+    \item \textbf{Annotations Menu:} \texttt{a} - \texttt{pdf-annot-add-highlight-markup-annotation}
+    \item \textbf{Delete Annotation:} \texttt{aD} - \texttt{pdf-annot-delete}
+    \item \textbf{Attachment Dired:} \texttt{at} - \texttt{pdf-annot-attachment-dired}
+    \item \textbf{Add Highlight:} \texttt{ah} - \texttt{pdf-annot-add-highlight-markup-annotation}
+    \item \textbf{List Annotations:} \texttt{al} - \texttt{pdf-annot-list-annotations}
+    \item \textbf{Markup Annotation:} \texttt{am} - \texttt{pdf-annot-markup-annotation}
+    \item \textbf{Strikeout Annotation:} \texttt{ao} - \texttt{pdf-annot-add-strikeout-markup-annotation}
+    \item \textbf{Squiggly Annotation:} \texttt{as} - \texttt{pdf-annot-add-squiggly-markup-annotation}
+    \item \textbf{Text Annotation:} \texttt{at} - \texttt{pdf-annot-add-text-annotation}
+    \item \textbf{Underline Annotation:} \texttt{au} - \texttt{pdf-annot-add-underline-markup-annotation}
+\end{itemize}
+
+\section*{Fit Options}
+\begin{itemize}
+    \item \textbf{Fit Width:} \texttt{fw} - \texttt{pdf-view-fit-width-to-window}
+    \item \textbf{Fit Height:} \texttt{fh} - \texttt{pdf-view-fit-height-to-window}
+    \item \textbf{Fit Page:} \texttt{fp} - \texttt{pdf-view-fit-page-to-window}
+\end{itemize}
+
+\section*{Slicing and Searching}
+\begin{itemize}
+    \item \textbf{Set Slice from Bounding Box:} \texttt{sb} - \texttt{pdf-view-set-slice-from-bounding-box}
+    \item \textbf{Set Slice Using Mouse:} \texttt{sm} - \texttt{pdf-view-set-slice-using-mouse}
+    \item \textbf{Reset Slice:} \texttt{sr} - \texttt{pdf-view-reset-slice}
+    \item \textbf{Search:} \texttt{ss} - \texttt{pdf-occur}
+\end{itemize}
+
+\section*{Miscellaneous}
+\begin{itemize}
+    \item \textbf{Outline:} \texttt{o} - \texttt{pdf-outline}
+    \item \textbf{Midnight Mode:} \texttt{m} - \texttt{pdf-view-midnight-minor-mode}
+    \item \textbf{Revert Buffer:} \texttt{r} - \texttt{pdf-view-revert-buffer}
+    \item \textbf{Follow Link:} \texttt{o} - \texttt{pdf-links-action-perform}
+    \item \textbf{First Page:} \texttt{gg} - \texttt{pdf-view-first-page}
+    \item \textbf{Last Page:} \texttt{G} - \texttt{pdf-view-last-page}
+\end{itemize}
+
+\section*{Evilified State Bindings}
+\begin{itemize}
+    \item \textbf{Next Line/Page:} \texttt{j} - \texttt{pdf-view-next-line-or-next-page}
+    \item \textbf{Previous Line/Page:} \texttt{k} - \texttt{pdf-view-previous-line-or-previous-page}
+    \item \textbf{Next Page:} \texttt{J} - \texttt{pdf-view-next-page}
+    \item \textbf{Previous Page:} \texttt{K} - \texttt{pdf-view-previous-page}
+\end{itemize}
+
+\section*{Transient State Bindings}
+\begin{itemize}
+    \item \textbf{Scroll Down:} \texttt{j} - \texttt{pdf-view-next-line-or-next-page}
+    \item \textbf{Scroll Up:} \texttt{k} - \texttt{pdf-view-previous-line-or-previous-page}
+    \item \textbf{Next Page:} \texttt{J} - \texttt{pdf-view-next-page}
+    \item \textbf{Previous Page:} \texttt{K} - \texttt{pdf-view-previous-page}
+    \item \textbf{Fit Width:} \texttt{W} - \texttt{pdf-view-fit-width-to-window}
+    \item \textbf{Fit Height:} \texttt{H} - \texttt{pdf-view-fit-height-to-window}
+    \item \textbf{Fit Page:} \texttt{P} - \texttt{pdf-view-fit-page-to-window}
+    \item \textbf{Reset Slice:} \texttt{R} - \texttt{pdf-view-reset-slice}
+    \item \textbf{Delete Annotation:} \texttt{aD} - \texttt{pdf-annot-delete}
+    \item \textbf{List Annotations:} \texttt{al} - \texttt{pdf-annot-list-annotations}
+    \item \textbf{Revert Buffer:} \texttt{r} - \texttt{pdf-view-revert-buffer}
+\end{itemize}
+
+\end{document}

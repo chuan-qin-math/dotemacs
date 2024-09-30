@@ -1,0 +1,8 @@
+# key: 5exact
+# name: 5exact
+# --
+\begin{equation}
+\begin{tikzcd}
+1 \arrow[r] & $1 \arrow[r] & $2 \arrow[r] & $3 \arrow[r] & 1
+\end{tikzcd}
+\end{equation}

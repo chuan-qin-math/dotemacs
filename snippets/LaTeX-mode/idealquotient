@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: idealquotient
+# key: idealquotient
+# --
+(\mathfrak{$1}: \mathfrak{$2})$0

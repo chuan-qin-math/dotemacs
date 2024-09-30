@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: 3Cdiagram 
+# key: 3Cdiagram
+# --
+\begin{center}
+ \begin{tikzpicture}[scale=1.5]
+\node (A) at (0,1) {$ ${1:A} $};
+\node (B) at (2,1) {$ ${2:B} $};
+\node (D) at (1,0) {$ ${3:D} $};
+\path[->,font=\scriptsize,>=angle 90]
+(A) edge node[above]{$ $4 $} (B)
+(D) edge node[right]{$ $5 $} (B)
+(A) edge node[below]{$ $6 $} (D);
+\end{tikzpicture}
+    \end{center} $0

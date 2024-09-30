@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:compact supported cohomology group 
+# key: Hci
+# --
+H_{c}^{i}

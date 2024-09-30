@@ -1,0 +1,9 @@
+# key: spliteqs
+# name: spliteqs
+# --
+\begin{equation}
+  \begin{aligned}
+$1 & $2 \\\
+  &  $3 
+  \end{aligned}
+\end{equation}

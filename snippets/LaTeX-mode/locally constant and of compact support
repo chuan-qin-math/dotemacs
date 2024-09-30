@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: locally constant and of compact support
+# key: lccs
+# --
+C_c^{\infty}($1)

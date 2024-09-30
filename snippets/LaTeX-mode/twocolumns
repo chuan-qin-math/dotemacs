@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: twocolumns
+# key: twocolumns
+# --
+\begin{frame}
+\begin{columns}
+  \column{0.5\textwidth}<1->
+  \textbf{$1}
+$3
+\column{0.5\textwidth}<1->
+\textbf{$2}
+
+\end{columns}  
+~\\ 
+\end{frame}

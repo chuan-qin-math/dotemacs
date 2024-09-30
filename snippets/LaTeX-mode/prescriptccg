@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: prescriptccg
+# key: pKccg
+# --
+\prescript{K}{}{C}_c^{\infty} (G)

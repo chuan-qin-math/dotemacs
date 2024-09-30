@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: inversehat
+# key: chk
+# --
+\check{$1}

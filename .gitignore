@@ -1,0 +1,7 @@
+# 忽略以下文件夹
+straight/
+transient/
+tree-sitter/
+elpa/
+quelpa/
+etc/

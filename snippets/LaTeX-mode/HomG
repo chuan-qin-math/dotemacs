@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: HomG
+# key: HomG
+# --
+\Hom_{G_{K/F}}($1, $2)

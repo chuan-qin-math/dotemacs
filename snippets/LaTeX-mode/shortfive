@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: shortfive
+# key: shortfive
+# --
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+\node (A) at (-2,0) {$ 0 $};
+\node (B) at (-1,0) {$ $1 $};
+\node (C) at (0,0) {$ $2 $};
+\node (D) at (1,0) {$ $3 $};
+\node (E) at (2,0) {$ 0 $};
+\path[->,font=\scriptsize,>=angle 60]
+(A) edge node[above]{} (B)
+(B) edge node[above]{$ $4 $} (C)
+(C) edge node[above]{$ $5 $} (D)
+(D) edge node[above]{} (E);
+\end{tikzpicture}
+  \end{center} $0

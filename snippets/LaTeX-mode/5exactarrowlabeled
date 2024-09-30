@@ -1,0 +1,8 @@
+# key: 5Exact
+# name: 5exactarrowlabeled
+# --
+\begin{equation}
+\begin{tikzcd}
+1 \arrow[r] & $1 \arrow[r, $4] & $2 \arrow[r, $5] & $3 \arrow[r] & 0
+\end{tikzcd}
+\end{equation}

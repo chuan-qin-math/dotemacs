@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: absolute value for x
+# key: lxl
+# --
+| $1 |

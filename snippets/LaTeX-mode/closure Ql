@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:closure Ql 
+# key: clQl 
+# --
+\overline{\mathbb{Q}}_{\ell}

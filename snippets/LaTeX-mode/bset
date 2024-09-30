@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bset
+# key: bset
+# --
+\\{ $1 \\ | \\ $2 \\}$3

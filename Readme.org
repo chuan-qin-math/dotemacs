@@ -1,0 +1,98 @@
+* 简介
+[[https://github.com/zilongshanren/.emacs.d/actions][file:https://github.com/zilongshanren/.emacs.d/workflows/CI/badge.svg]]
+
+
+** Emacs 版本
+*** 版本要求 emacs-mac port 29
+#+begin_src sh
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-librsvg  --with-imagemagick --with-dbus
+#+end_src
+
+*** 拷贝到 Application 目录，这里使用的是 Alias （M1 芯片）
+#+begin_src sh
+osascript -e 'tell application "Finder" to make alias file to POSIX file "/opt/homebrew/opt/emacs-mac/Emacs.app" at POSIX file "/Applications"'
+#+end_src
+其他系统可以参考：https://github.com/railwaycat/homebrew-emacsmacport/blob/master/docs/emacs-start-helpers.md
+** 安装依赖（Mac)
+安装 gnu tools
+#+begin_src sh
+brew install coreutils
+# Make all GNU flavor commands available, may override same-name BSD flavor commands
+# For x86 Mac
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+
+# For M1 Mac
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:${MANPATH}"
+#+end_src
+** 配置理念
+
+- 尽可能不引入多余的 package，尽量使用 Emacs 内置的 package
+- 如果能写一个 function 解决，则不引用 package
+- 使用 vim 快捷键和操作方式
+- 全面拥抱 lsp（language server protocol），本项目目前使用 eglot
+  
+** 使用配置说明
+首先 clone 仓库，然后在仓库根目录运行以下命令更新 submodule：
+
+#+begin_src bash
+git submodule init 
+git summodule update
+#+end_src
+  
+** 安装外部依赖
+- fd (https://github.com/sharkdp/fd)  very fast!!
+- ripgrep (https://github.com/BurntSushi/ripgrep)  very very very fast!!!
+- everything (windows only ) fatest file search program!!
+- emacs-rime (https://github.com/DogLooksGood/emacs-rime)
+
+** 目前支持的 lsp 功能
+*** python
+使用 lsp server 为 pyright，安装方法如下：
+#+begin_src python
+  pip install pyright
+#+end_src
+
+*** Vue 开发
+- 安装 vls
+#+begin_src js
+  npm install -g vls
+    npm install -g @volar/vue-language-server
+#+end_src
+
+*** Web 开发
+- 安装 html，css，json language server
+#+begin_src js
+npm i -g vscode-langservers-extracted.
+#+end_src
+
+- 安装 js 和 typescript 的 language server
+#+begin_src js
+npm install -g typescript-language-server typescript
+#+end_src
+
+注意，windows 平台 nodejs 版本，如果 nvm 版本小于 1.19 可能会有问题。
+npm ERR! Unexpected token '.' with with nvm-windows <= 1.1.7 #4234
+https://github.com/npm/cli/issues/4234
+
+解决方法可以安装 node 16.13.2,我这边之前安装 16.15 LTS 有问题。
+
+*** TODO React
+
+*** TODO C/C++
+
+*** org protocol 
+
+#+begin_src javascript
+javascript:location.href='org-protocol://capture?template=x&url=%27+encodeURIComponent(location.href)+%27&title=%27+encodeURIComponent(document.title)+%27&body=%27+encodeURIComponent(function(){var%20html%20=%20%22%22;var%20sel%20=%20window.getSelection();if%20(sel.rangeCount)%20{var%20container%20=%20document.createElement(%22div%22);for%20(var%20i%20=%200,%20len%20=%20sel.rangeCount;%20i%20%3C%20len;%20++i)%20{container.appendChild(sel.getRangeAt(i).cloneContents());}html%20=%20container.innerHTML;}var%20dataDom%20=%20document.createElement(%27div%27);dataDom.innerHTML%20=%20html;dataDom.querySelectorAll(%27a%27).forEach(function(item,%20idx)%20{console.log(%27find%20a%20link%27);var%20url%20=%20new%20URL(item.href,%20window.location.href).href;var%20content%20=%20item.innerText;item.innerText%20=%20%27[[%27+url+%27][%27+content+%27]]%27;});[%27p%27,%20%27h1%27,%20%27h2%27,%20%27h3%27,%20%27h4%27].forEach(function(tag,%20idx){dataDom.querySelectorAll(tag).forEach(function(item,%20index)%20{var%20content%20=%20item.innerHTML.trim();if%20(content.length%20%3E%200)%20{item.innerHTML%20=%20content%20+%20%27&#13;&#10;';}});});return%20dataDom.innerText.trim();}())
+#+end_src
+
+** 其他配置
+- [[https://github.com/seagle0128/.emacs.d][Centuar Emacs]]
+- [[https://github.com/purcell/emacs.d][purcell]]
+- [[https://github.com/condy0919/.emacs.d][condy]]
+- [[https://github.com/redguardtoo/emacs.d][chen bin]]
+- https://github.com/turbana/emacs-config/blob/2003077c60ffabd3b48835727af8953fc37067f7/README.org#zetian
+

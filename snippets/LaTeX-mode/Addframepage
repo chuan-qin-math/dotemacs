@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Addframepage
+# key: addslide
+# --
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{$1}

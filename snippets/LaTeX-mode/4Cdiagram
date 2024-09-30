@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: 4Cdiagram     
+# key: 4Cdiagram
+# --
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+\node (A) at (0,1) {$ ${1:A} $};
+\node (B) at (1,1) {$ ${2:B} $};
+\node (C) at (0,0) {$ ${3:C} $};
+\node (D) at (1,0) {$ ${4:D} $};
+\path[->,font=\scriptsize,>=angle 90]
+(A) edge node[above]{$ $5 $} (B)
+(A) edge node[left]{$ $6 $} (C)
+(B) edge node[right]{$ $7 $} (D)
+(C) edge node[above]{$ $8 $} (D);
+\end{tikzpicture}
+  \end{center} $0

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: enumeratea
+# key: enumeratea
+# --
+\begin{enumerate}[(a)]
+\item $1
+\end{enumerate}

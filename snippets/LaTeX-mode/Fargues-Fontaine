@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Fargues-Fontaine
+# key: FF
+# condition: (LaTeX-math-mode /= nil)
+# --
+Fargues-Fontaine

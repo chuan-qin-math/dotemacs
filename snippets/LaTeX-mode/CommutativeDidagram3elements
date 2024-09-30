@@ -1,0 +1,10 @@
+# key: CD3
+# name: CommutativeDidagram3elements
+# --
+\begin{center}
+  \begin{tikzcd}
+    & ${1:A}  \arrow[dr, dashed, "${2:dr}" ] & \\\
+  ${3:B} \arrow[rr, "${4:rr}"] \arrow[ru,  "${5:ru}" ] &    &
+ ${6:C}
+\end{tikzcd}
+\end{center}
