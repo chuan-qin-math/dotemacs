@@ -6,6 +6,7 @@ elpa/
 quelpa/
 etc/
 var/
+.cache/
 /recentf
 /Makefile
 /tabsession.el
