@@ -298,6 +298,33 @@
   ;; 启动 Emacs 服务器
   (server-start))
 
+;; reftex 设置
+(setq reftex-default-bibliography '("ref.bib"))
+(setq reftex-bibliography-commands '("cite" "citep" "citet" "citeyear")) ;; 需要的引用命令
+(setq reftex-label-alist '(("article" ?a "Article" "~\\cite{" nil nil)
+                           ("book"    ?b "Book"    "~\\cite{" nil nil)))
+(setq reftex-show-bibliography t) ;; 显示参考文献
+
+
+
+(use-package company-auctex
+  :defer t
+  :after (company auctex)
+  :straight (:build t)
+  :config
+  (company-auctex-init))
+
+(use-package company-math
+  :defer t
+  :straight (:build t)
+  :after (company auctex)
+  :config
+  (defun my-latex-mode-setup ()
+    (setq-local company-backends
+                (append '((company-math-symbols-latex company-latex-commands))
+                        company-backends)))
+  (add-hook 'TeX-mode-hook #'my-latex-mode-setup))
+
 
 (use-package auctex-latexmk
   :straight (auctex-latexmk :fetcher github :repo "emacsmirror/auctex-latexmk") ; fix a incompatibility bug by non-author.
