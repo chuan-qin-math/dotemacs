@@ -5,3 +5,11 @@ tree-sitter/
 elpa/
 quelpa/
 etc/
+var/
+/recentf
+/Makefile
+/tabsession.el
+/abbrev_defs
+/org-protocol.reg
+/test-startup.sh
+/.project
