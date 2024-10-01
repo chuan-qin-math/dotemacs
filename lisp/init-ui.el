@@ -70,7 +70,7 @@
 (use-package doom-themes
   :ensure t
   :init
-  (load-theme 'doom-zenburn t))
+  (load-theme 'doom-solarized-light t))
 
 (set-face-attribute 'default nil :height 200)
 
