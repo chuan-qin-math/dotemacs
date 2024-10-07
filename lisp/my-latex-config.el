@@ -223,7 +223,8 @@
   (TeX-source-correlate-start-server t)
   :config
   ;; 设置 LaTeX 语法高亮颜色及字体大小
-  (setq-default TeX-master t) ; 默认询问主文件
+  ;; (setq-default TeX-master t)
+                                        ; 默认询问主文件
   (add-hook 'LaTeX-mode-hook 'my/latex-hook) ; 加载LaTeX模式设置
   (add-hook 'TeX-after-compilation-finished-functions
             #'TeX-revert-document-buffer) ; 编译后更新 pdf 文件

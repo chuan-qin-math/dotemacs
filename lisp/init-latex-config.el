@@ -266,17 +266,19 @@
   :straight auctex
   :custom
   ;; AUCTeX 设置
-  (TeX-parse-self t)                    ; 自动解析 tex 文件
-  (TeX-PDF-mode t)                      ; 启用 PDF 模式
-  (TeX-DVI-via-PDFTeX t)                ; 使用 PDFTeX 生成 DVI
-  (TeX-source-correlate-mode t)         ; 启用源代码关联
+  (TeX-parse-self t)                     ; 自动解析 tex 文件
+  (TeX-PDF-mode t)                       ; 启用 PDF 模式
+  (TeX-DVI-via-PDFTeX t)                 ; 使用 PDFTeX 生成 DVI
+  (TeX-source-correlate-mode t)          ; 启用源代码关联
   (TeX-source-correlate-method 'synctex) ; 设置源代码关联方法为 SyncTeX
-  (TeX-source-correlate-start-server t) ; 启动服务器以支持关联
-  (TeX-view-program-selection '((output-pdf "Skim"))) ; 设置 PDF 查看程序
-  (TeX-view-program-list
-   '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o"))) ; Skim 配置
-  ;; 设置 LaTeX 语法高亮颜色及字体大小
-  (setq-default TeX-master t)                ; 默认询问主文件
+  (TeX-source-correlate-start-server t)  ; 启动服务器以支持关联
+  ;; (TeX-view-program-selection '((output-pdf "Skim"))) ; 设置 PDF 查看程序
+  ;; (TeX-view-program-list
+  ;;  '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o")))
+                                        ; Skim 配置
+  (TeX-view-program-selection '((output-pdf "PDF Tools"))) ; 使用 pdf-tools 预览 pdf
+
+  (setq-default TeX-master t)           ; 默认询问主文件
 
   :hook
   ;; 加载 LaTeX 模式设置

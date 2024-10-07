@@ -3,113 +3,56 @@
 ;;   (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig"))
 ;; (use-package pdf-tools :init (pdf-tools-install))
 ;; Emacs 29 启用了新变量名
-(if (version<= emacs-version "28.2")
-    (setq native-comp-deferred-compilation-deny-list '(".*pdf.*")) ; 禁用 =pdf-tools= 有关文件的本地化编译
-  (setq native-comp-jit-deferred-compilation-deny-list '(".*pdf.*"))) ; 禁用 =pdf-tools= 有关文件的本地化编译
+;; (if (version<= emacs-version "28.2")
+;;     (setq native-comp-deferred-compilation-deny-list '(".*pdf.*")) ; 禁用 =pdf-tools= 有关文件的本地化编译
+;;   (setq native-comp-jit-deferred-compilation-deny-list '(".*pdf.*")))
+                                        ; 禁用 =pdf-tools= 有关文件的本地化编译
 
 
-(setq pdf-packages '(pdf-tools
-                     pdf-view-restore))
+;; (setq pdf-packages '(pdf-tools
+;;                      pdf-view-restore))
 
-(defun pdf/init-pdf-tools ()
-  (use-package pdf-tools
-    :defer t
-    :magic ("%PDF" . pdf-view-mode)
-    :straight (:build t)
-    :custom
-    (pdf-view-use-scaling nil) ;; Disable scaling for better performance
-    :init
-    (pdf-loader-install) ;; Install the pdf loader
-    :hook (pdf-tools-enabled . pdf-view-midnight-minor-mode)
-    :general
-    (phundrak/evil
-     :keymaps 'pdf-view-mode-map
-     :packages 'pdf-tools
-     "y"   #'pdf-view-kill-ring-save
-     "t"   #'evil-collection-pdf-view-next-line-or-next-page
-     "s"   #'evil-collection-pdf-view-previous-line-or-previous-page)
-    (phundrak/major-leader-key
-      :keymaps 'pdf-view-mode-map
-      :packages 'pdf-tools
-      "a"  '(:ignore t :which-key "annotations")
-      "aD" #'pdf-annot-delete
-      "at" #'pdf-annot-attachment-dired
-      "ah" #'pdf-annot-add-highlight-markup-annotation
-      "al" #'pdf-annot-list-annotations
-      "am" #'pdf-annot-markup-annotation
-      "ao" #'pdf-annot-add-strikeout-markup-annotation
-      "as" #'pdf-annot-add-squiggly-markup-annotation
-      "at" #'pdf-annot-add-text-annotation
-      "au" #'pdf-annot-add-underline-markup-annotation
+(use-package pdf-tools
+  :ensure t
+  :defer t
+  :magic ("%PDF" . pdf-view-mode)
+  :straight (:build t)
+  :custom
+  (pdf-view-use-scaling nil) ;; Disable scaling for better performance
+  (pdf-tools-handle-upgrades t) ;; Enable automatic upgrades
+  :init
+  (setenv "PKG_CONFIG_PATH" "/opt/homebrew/Cellar/zlib/1.2.13/lib/pkgconfig:/opt/homebrew/lib/pkgconfig:/opt/X11/lib/pkgconfig:/opt/homebrew/Cellar/poppler/23.01.0/lib/pkgconfig:/opt/X11/share/pkgconfig")
+  :hook
+  ((pdf-tools-enabled . pdf-view-midnight-minor-mode)
+   (pdf-view-mode-hook . (lambda () (pdf-view-fit-width-to-window))))
+  :config
+  (pdf-tools-install)
+  (require 'pdf-annot)
+  (require 'pdf-history)
+  (with-eval-after-load 'pdf-view
+    ;; (csetq pdf-view-midnight-colors '("#657b83" . "#fdf6e3")) ;sepia color set
+    ;; (csetq pdf-view-midnight-colors '("#d8dee9" . "#2e3440")) ;dark night
+    ;; (csetq pdf-view-midnight-colors '("#ffffff" . "#1e1e1e")) ;white-black
+    (csetq pdf-view-midnight-colors '("#000000" . "#fffff0")) ;old paper
+    ))
 
-      "f"  '(:ignore t :which-key "fit")
-      "fw" #'pdf-view-fit-width-to-window
-      "fh" #'pdf-view-fit-height-to-window
-      "fp" #'pdf-view-fit-page-to-window
 
-      "s"  '(:ignore t :which-key "slice/search")
-      "sb" #'pdf-view-set-slice-from-bounding-box
-      "sm" #'pdf-view-set-slice-using-mouse
-      "sr" #'pdf-view-reset-slice
-      "ss" #'pdf-occur
 
-      "o"  'pdf-outline
-      "m"  'pdf-view-midnight-minor-mode)
-    :config
-    (with-eval-after-load 'pdf-view
-      (csetq pdf-view-midnight-colors '("#d8dee9" . "#2e3440")))
+;; 将 pdf-view-mode 设置为打开 PDF 文件的默认方式
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
-    ;; Additional keybindings for pdf-view-mode
-    (define-prefix-command 'pdf-view-prefix)
-    (define-key pdf-view-mode-map (kbd "C-c p") 'pdf-view-prefix)
-    (define-key pdf-view-mode-map (kbd "C-c pa") 'pdf-annot-add-highlight-markup-annotation)
-    (define-key pdf-view-mode-map (kbd "C-c pd") 'pdf-annot-delete)
-    (define-key pdf-view-mode-map (kbd "C-c pf") 'pdf-view-fit-width-to-window)
-    (define-key pdf-view-mode-map (kbd "C-c pp") 'pdf-misc-print-document)
-    (define-key pdf-view-mode-map (kbd "C-c po") 'pdf-outline)
 
-    ;; Evilified state bindings for pdf-view-mode
-    (evil-define-key 'visual pdf-view-mode-map
-      "y" 'pdf-view-kill-ring-save
-      (kbd "<C-down-mouse-1>") 'pdf-view-mouse-extend-region
-      (kbd "<M-down-mouse-1>") 'pdf-view-mouse-set-region-rectangle
-      (kbd "<down-mouse-1>")  'pdf-view-mouse-set-region)
 
-    (evilified-state-evilify-map pdf-view-mode-map
-                                 :mode  pdf-view-mode
-                                 :bindings
-                                 "j"  'pdf-view-next-line-or-next-page
-                                 "k"  'pdf-view-previous-line-or-previous-page
-                                 "J"  'pdf-view-next-page
-                                 "K"  'pdf-view-previous-page
-                                 "gg"  'pdf-view-first-page
-                                 "G"  'pdf-view-last-page
-                                 "/" 'isearch-forward
-                                 "?" 'isearch-backward
-                                 "r"   'pdf-view-revert-buffer
-                                 "o"   'pdf-links-action-perform
-                                 "O"   'pdf-outline))
 
-  (evil-define-key 'normal pdf-outline-buffer-mode-map
-    "j" 'next-line
-    "k" 'previous-line
-    "RET" 'pdf-outline-follow-link)
-
-(require 'pdf-annot) ; 设置 pdf-annot-mimor-mode-map 必须
-  (require 'pdf-history) ; 设置 pdf-history-minor-mode-map 必须
-  (add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ; 默认适应页宽
-
-  )
-
-(defun pdf/init-pdf-view-restore ()
-  (use-package pdf-view-restore
+ (use-package pdf-view-restore
     :after pdf-tools
     :defer t
     :straight (:build t)
     :hook (pdf-view-mode . pdf-view-restore-mode)
     :config
     (setq pdf-view-restore-filename (expand-file-name ".tmp/pdf-view-restore"
-                                                      user-emacs-directory))))
+                                                      user-emacs-directory)))
+
 
 ;; Transient state setup for pdf-tools
   (use-package transient

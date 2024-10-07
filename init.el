@@ -100,6 +100,9 @@
   ;; 更新 PATH 环境变量
   (setenv "PATH" (concat homebrew-bin ":" (getenv "PATH"))))
 
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(add-to-list 'exec-path "/usr/local/bin")
+
 
 
 ;; Core
@@ -135,10 +138,11 @@
 (require 'init-lisp)
 (require 'init-python)
 
-;; (require 'init-pdftools)
+ (require 'init-pdftools)
 ;; (require 'my-latex-config)
 ;; (require 'init-latex-packages)
 (require 'init-latex-config)
+;; (require 'my-pdftools)
 ;; personal
 (require 'init-keybindings)
 
