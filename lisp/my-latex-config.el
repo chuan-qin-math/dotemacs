@@ -191,6 +191,19 @@
     "P" #'preview-clearout-at-point))
 
 
+(defun my/latex-mode-hook ()
+  "Custom configurations for LaTeX mode."
+  ;; 启用 yasnippet
+  (yas-minor-mode 1)
+
+  ;; 配置 company
+  (setq-local company-idle-delay 0.2)  ; 控制补全延迟
+  (setq-local company-backends '((company-yasnippet company-dabbrev company-files)))  ; 指定补全后端顺序
+
+  ;; 使用 `cape` 的 tex 补全
+  (add-to-list 'completion-at-point-functions #'cape-tex))
+
+(add-hook 'LaTeX-mode-hook 'my/latex-mode-hook)
 
 
 (use-package cdlatex

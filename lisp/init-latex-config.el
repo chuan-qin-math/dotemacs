@@ -218,10 +218,25 @@
           ("\\Fc" . #x2131)
           ("\\Nc" . #x1D4A9))))
 
+
+;; (defun my/latex-tab-command ()
+;;   "Custom Tab command for LaTeX mode that prioritizes cdlatex, company-auctex, company-math, yasnippet, and auctex."
+;;   (interactive)
+;;   (cond
+;;    ;; 优先处理 cdlatex 的 Tab 功能
+;;    ((and (eq major-mode 'latex-mode) (cdlatex-tab-command)) nil)
+;;    ;; 如果 company-active-p 为真，调用 company 进行补全
+;;    ((company-tooltip-visible-p) (company-complete-common))
+;;    ;; 否则，调用 auctex 的补全功能
+;;    ((austex-active) (TeX-complete-symbol))
+;;    ;; 默认缩进
+;;    (t (indent-for-tab-command))))
+
+
 (use-package outline
   :init
-      (setq outline-minor-mode-prefix (kbd "C-o"))
-    (setq outline-minor-mode-prefix (kbd "C-'"))
+  (setq outline-minor-mode-prefix (kbd "C-o"))
+  (setq outline-minor-mode-prefix (kbd "C-'"))
   :bind
   (:map outline-minor-mode-map
         ("C-' t" . outline-hide-body)
@@ -233,10 +248,11 @@
 (defun my/latex-hook ()
   (turn-on-cdlatex)
   (turn-on-reftex)
-  (outline-minor-mode) ; 大纲预览
-  (outline-hide-body) ; 启动时折叠文件
-  (when my/enable-folding
-    (prettify-symbols-mode t)))  ; prettify 数学符号
+  (outline-minor-mode)                  ; 大纲预览
+  ;; (outline-hide-body) ; 启动时折叠文件
+  ;; (when my/enable-folding
+  ;;   (prettify-symbols-mode t))
+  )  ; prettify 数学符号
 
 (defun pdf-util-frame-scale-factor () 2)
 
@@ -256,10 +272,10 @@
 (defun my/set-latex-font ()
   (interactive)
   (require 'font-latex)
-(unless my/is-terminal
-  (set-face-attribute 'font-latex-math-face nil :foreground "#f78c6c" :font my/math-font :height 1.15)) ; 数学符号
-  (set-face-attribute 'font-latex-script-char-face nil :foreground "#c792ea") ; 上下标字符^与_
-  (set-face-attribute 'font-latex-sedate-face nil :foreground "#ffcb6b")) ; 关键字
+  (unless my/is-terminal
+    ;; 使用 face-remap-add-relative 设置上下标字符为鲜艳红色
+    (face-remap-add-relative 'font-latex-script-char-face :foreground "#ff0000"))
+  )
 
 (use-package tex
   :defer 10
@@ -293,6 +309,8 @@
   (my/preview-latex-config)
   (my/reftex-config)
   (my/more-prettified-symbols)
+  ;; (my/set-latex-font)
+  ;; (my/latex-tab-command)
 
   ;; 设置 AUCTeX 编译文件时询问，t 为默认当前文件为主文件
   (setq-default TeX-master nil)
@@ -300,8 +318,11 @@
   ;; 启动 Emacs 服务器
   (server-start))
 
+
+
+
 ;; reftex 设置
-(setq reftex-default-bibliography '("ref.bib"))
+(setq reftex-default-bibliography '("reference.bib"))
 (setq reftex-bibliography-commands '("cite" "citep" "citet" "citeyear")) ;; 需要的引用命令
 (setq reftex-label-alist '(("article" ?a "Article" "~\\cite{" nil nil)
                            ("book"    ?b "Book"    "~\\cite{" nil nil)))

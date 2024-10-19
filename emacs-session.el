@@ -1,0 +1,1 @@
+(setq saved-buffers '("/Users/qc/LaTeX/new/test.tex" ))

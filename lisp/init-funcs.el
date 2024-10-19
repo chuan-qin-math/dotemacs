@@ -1538,6 +1538,30 @@ and ending with the extension of the requested TYPE."
   (switch-to-buffer "*scratch*"))
 
 
+;; below is by me & chatGPT
+
+(defun restart-and-reopen ()
+  "Restart Emacs and reopen the last opened buffers."
+  (interactive)
+  (let ((current-buffers (mapcar 'buffer-file-name (buffer-list))))
+    (with-temp-file (expand-file-name "emacs-saved-buffers" user-emacs-directory)
+      (insert (mapconcat 'identity current-buffers "\n")))
+    (restart-emacs)))
+
+(defun reopen-saved-buffers ()
+  "Reopen the last saved buffers after restarting."
+  (let ((buffer-file (expand-file-name "emacs-saved-buffers" user-emacs-directory)))
+    (when (file-exists-p buffer-file)
+      (with-temp-buffer
+        (insert-file-contents buffer-file)
+        (dolist (file (split-string (buffer-string) "\n" t))
+          (when (file-exists-p file)
+            (find-file file)))))
+    (delete-file buffer-file)))
+
+(add-hook 'emacs-startup-hook 'reopen-saved-buffers)
+
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

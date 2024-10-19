@@ -5,7 +5,35 @@
 ;;; Packages
 
 (use-package company
-  :ensure t)
+  :ensure t
+  :custom
+   (company-backends
+  '((company-capf :with company-dabbrev-code company-keywords)
+    (company-dabbrev)
+    (company-ispell)
+    (company-capf :with company-yasnippet)
+    (company-files :with company-yasnippet)
+    company-dabbrev
+    company-yasnippet))
+
+  ;; dabbrev 不改变大小写
+  ;; (company-dabbrev-ignore-case nil)
+  ;; (company-dabbrev-downcase nil)
+  ;; (company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
+  ;; (company-show-quick-access 'left)
+  ;; :bind
+  ;; (:map company-active-map
+  ;;       ("M-/" . company-complete)
+  ;;       ("<tab>" . company-indent-or-complete-common)
+  ;;       ("C-c C-/" . company-other-backend))
+ :init (global-company-mode)
+  :config
+  (setq company-minimum-prefix-length 1
+        company-idle-delay 0.0) ;; 立即开始补全
+    (set-face-attribute 'company-tooltip nil :inherit 'fixed-pitch))
+
+(setq auto-completion-tab-key-behavior nil)
+
 
 (defun nasy/orderless-dispatch-flex-first (_pattern index _total)
   "orderless-flex for corfu."

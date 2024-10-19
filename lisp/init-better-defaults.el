@@ -66,6 +66,10 @@
         '(c++-mode objc-mode c-mode)
       (sp-local-pair "{" nil :post-handlers '(:add ("||\n[i]" "RET")))))
 
+;;当你选中一段文字 之后输入一个字符会替换掉你选中部分 selection then input is replacement!
+(delete-selection-mode 1)
+
+
 (use-package hungry-delete
   :init
   (global-hungry-delete-mode))

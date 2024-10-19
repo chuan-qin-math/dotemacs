@@ -92,7 +92,7 @@
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-
+;; the follows path setup is only for macOS (M chips), please add your path for dependent tools (required by pdftools, ripgrep, etc...)!
 ;; 设置 Homebrew 的 bin 路径
 (let ((homebrew-bin "/opt/homebrew/bin"))
   ;; 添加到 exec-path
@@ -150,6 +150,8 @@
 ;; programming
 (require 'init-programming)
 
+;; weather
+(require 'init-weather)
 (defun efs/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
            (format "%.2f seconds"

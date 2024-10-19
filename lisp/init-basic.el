@@ -255,9 +255,7 @@
 
 (define-abbrev-table 'global-abbrev-table '(
                                             ;; signature
-                                            ("8zl" "zilongshanren")
-                                            ;; Microsoft
-                                            ("8ms" "Microsoft")
+                                            ("cqin" "Chuan Qin")
                                             ))
 
 (setq-default split-height-threshold nil)
