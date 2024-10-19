@@ -8,13 +8,13 @@
   :ensure t
   :custom
    (company-backends
-  '((company-capf :with company-dabbrev-code company-keywords)
-    (company-dabbrev)
+    '((company-yasnippet)
+    (company-capf :with company-dabbrev-code company-keywords)
     (company-ispell)
     (company-capf :with company-yasnippet)
     (company-files :with company-yasnippet)
-    company-dabbrev
-    company-yasnippet))
+    (company-dabbrev)
+    ))
 
   ;; dabbrev 不改变大小写
   ;; (company-dabbrev-ignore-case nil)

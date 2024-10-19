@@ -70,7 +70,9 @@
 (use-package doom-themes
   :ensure t
   :init
-  (load-theme 'doom-solarized-light t))
+   (load-theme 'doom-solarized-light t)
+  ;; (load-theme 'doom-nord-aurora t)
+  )
 
 (set-face-attribute 'default nil :height 200)
 
@@ -122,11 +124,21 @@
 (add-hook 'server-after-make-frame-hook #'my/set-font)
 
 
+
 (use-package visual-fill-column
   :ensure t
   :init
   ;; Configure fill width
   (setq visual-fill-column-width 110
         visual-fill-column-center-text t))
+
+(use-package info-colors
+  :straight (:build t)
+  :commands info-colors-fnontify-node
+  :hook (Info-selection . info-colors-fontify-node)
+  :hook (Info-mode      . mixed-pitch-mode))
+
+
+
 
 (provide 'init-ui)

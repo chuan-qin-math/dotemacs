@@ -114,9 +114,9 @@
    (global-set-key (kbd "TAB") 'my/hippie-expand-with-company)
 
   ;; 设置 yasnippet 展开的快捷键为 C-c y
-  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
-  ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
-  ;; (global-set-key (kbd "C-c y") 'yas-expand)
+   ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
+   ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
+   (global-set-key (kbd "C-c y") 'yas-expand)
 
   ;; 设置插入 yasnippet 片段的快捷键为 C-c i
   (global-set-key (kbd "C-c i") 'yas-insert-snippet)
