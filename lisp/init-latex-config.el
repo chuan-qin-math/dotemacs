@@ -33,10 +33,10 @@
           ("cd" "insert cdots" "\\cdots" nil nil t t)
           ("cupl" "insert \\bigcup\\limits_{}^{}" "\\bigcup\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
           ("dd" "insert ddots" "\\ddots" nil nil t t)
-          ("def" "insert definition env" "" cdlatex-environment ("definition") t nil)
+          ("defn" "insert definition env" "" cdlatex-environment ("definition") t nil)
           ("des" "insert description" "" cdlatex-environment ("description") t nil)
           ("enu*" "insert enu" "\\begin{enumerate}\n\\item ?\n\\end{enumerate}" cdlatex-position-cursor nil t nil)
-          ("equ*" "insert unlabel equation" "" cdlatex-environment ("equation*") t nil)
+          ("equation*" "insert unlabel equation" "" cdlatex-environment ("equation*") t nil)
           ("exb" "Insert beamer example block with overlay" "\\begin{exampleblock}<+->{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
           ("exb*" "Insert beamer example block without overlay" "\\begin{exampleblock}{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
           ("exe" "Insert exercise" "\\begin{exercise}\n? \n\\end{exercise}" cdlatex-position-cursor nil t nil)
@@ -346,9 +346,9 @@
     "Set up company backends for LaTeX mode."
     ;; 设置 company-backends 的顺序，使得 math, auctex 和 cdlatex 在前
     (setq-local company-backends
-                (append '((company-math-symbols-latex company-latex-commands
+                (append '((cdlatex-tab company-math-symbols-latex company-latex-commands
                            company-auctex-macros company-auctex-symbols company-auctex-environments
-                           cdlatex-tab))
+                           ))
                         ;; 其余 backends 保持不变，但 company-dabbrev 位于后面
                         (remove 'company-dabbrev company-backends)
                         '(company-dabbrev))))
