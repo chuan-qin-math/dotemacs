@@ -14,3 +14,5 @@ var/
 /org-protocol.reg
 /test-startup.sh
 /.project
+/org-persist/gc-lock.eld
+
