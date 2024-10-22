@@ -61,7 +61,7 @@
     :init
     )
 
-
+;; C-c y is reserved for yasnippet expand
 (use-package youdao-dictionary
   :commands (youdao-dictionary-search-at-point+)
   :init
