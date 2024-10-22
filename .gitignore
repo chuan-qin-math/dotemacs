@@ -15,4 +15,5 @@ var/
 /test-startup.sh
 /.project
 /org-persist/gc-lock.eld
+emacs-libvterm/
 
