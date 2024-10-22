@@ -170,6 +170,17 @@
 
 (add-hook 'after-change-major-mode-hook 'purge-minor-modes)
 
+;; (use-package rainbow-delimiters
+;;   :straight (:build t)
+;;   :defer t
+;;   :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package info-colors
+  :straight (:build t)
+  :commands info-colors-fnontify-node
+  :hook (Info-selection . info-colors-fontify-node)
+  :hook (Info-mode      . mixed-pitch-mode))
+
 
 
 (provide 'init-ui)
