@@ -139,6 +139,37 @@
   :hook (Info-mode      . mixed-pitch-mode))
 
 
+(defvar hidden-minor-modes ; example, write your own list of hidden
+  '(abbrev-mode            ; minor modes
+    auto-fill-function
+    flycheck-mode
+    flyspell-mode
+    company-mode
+    corfu-mode
+    smartparens-mode
+    ;; yas-minor-mode
+    evil-snipe-local-mode
+    evil-collection-unimpaired-mode
+    eldoc-mode
+    which-key-mode
+    lispyville-mode
+    lispy-mode
+    hungry-delete-mode
+    ws-butler-mode
+    anzu-mode
+    subword-mode
+    pangu-spacing-mode
+    ))
+
+(defun purge-minor-modes ()
+  (interactive)
+  (dolist (x hidden-minor-modes nil)
+    (let ((trg (cdr (assoc x minor-mode-alist))))
+      (when trg
+        (setcar trg "")))))
+
+(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
+
 
 
 (provide 'init-ui)

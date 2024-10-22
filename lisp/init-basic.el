@@ -240,9 +240,10 @@
 (when (display-graphic-p)
   (add-hook 'window-setup-hook #'fix-fullscreen-cocoa)
   (bind-keys ("C-<f11>" . toggle-frame-fullscreen)
-             ("C-s-f" . toggle-frame-fullscreen) ; Compatible with macOS
-             ("S-s-<return>" . toggle-frame-fullscreen)
-             ("M-S-<return>" . toggle-frame-fullscreen)))
+             ;; ("C-s-f" . toggle-frame-fullscreen); Compatible with macOS
+             ;; ("S-s-<return>" . toggle-frame-fullscreen)
+             ;; ("M-S-<return>" . toggle-frame-fullscreen)
+             ))
 
 (setq save-abbrevs nil)
 

@@ -7,6 +7,10 @@ My emacs setting based on:
 
 3. https://config.phundrak.com/emacs/
 
-and other sources (spacemacs, doom...)  on the internet. 
+and other sources (spacemacs, doom...)  on the internet.
+
+Need to do:
+
+M-x nerd-icons-install-fonts (if some modeline fonts are missings)
 
 It is still under construction, use it at your own risk.
