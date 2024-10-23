@@ -62,10 +62,14 @@
     )
 
 ;; C-c y is reserved for yasnippet expand
-(use-package youdao-dictionary
-  :commands (youdao-dictionary-search-at-point+)
-  :init
-  (global-set-key (kbd "C-c Y") 'youdao-dictionary-search-at-point+))
+;; (use-package youdao-dictionary
+;;   :commands (youdao-dictionary-search-at-point+)
+;;   :init
+;;   (global-set-key (kbd "C-c Y") 'youdao-dictionary-search-at-point+))
+
+
+
+
 
 
 (use-package iedit
@@ -220,6 +224,7 @@
   (use-package  vterm
     :ensure t
     )
+
 
   (use-package multi-vterm
     :ensure t
