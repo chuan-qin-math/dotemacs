@@ -68,7 +68,22 @@
 ;;   (global-set-key (kbd "C-c Y") 'youdao-dictionary-search-at-point+))
 
 
+  ;;dictionary
+  ;; Support Chinese word
+  ;; (setq osx-dictionary-use-chinese-text-segmentation t)
 
+  ;; Choose explicitly a dictionary for searching (use the first available
+  ;; dictionary in Dictionary.app if not set)
+  ;;(setq osx-dictionary-dictionary-choice "Apple")
+  ;; To search in more than one dictionaries
+  ;; (setq osx-dictionary-dictionary-choice (list "English" "Simplified Chinese" "French"))
+  ;; To search in all dictionaries
+(use-package osx-dictionary
+  :bind (("C-c d" . osx-dictionary-search-pointer) ;; 绑定快捷键
+         ;; ("C-c i" . osx-dictionary-search-input) ;; 可选快捷键
+         )
+  :config
+  (setq osx-dictionary-dictionary-choice (osx-dictionary-get-all-dictionaries)))
 
 
 
