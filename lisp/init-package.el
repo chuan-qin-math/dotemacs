@@ -99,15 +99,18 @@
   :demand t)
 
 ;;straight
+(setq straight-base-dir "/Users/chuan/.vanilla/")
+
 (defvar bootstrap-version)
-(defvar comp-deferred-compilation-deny-list ()) ; workaround, otherwise straight shits itself
+(defvar comp-deferred-compilation-deny-list ()) ; workaround for native compilation issues
+
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" straight-base-dir))
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
@@ -117,15 +120,9 @@
       '((github . "Phundrak")
         (gitlab . "Phundrak")))
 
-;; (package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-
-
-(setq straight-vc-git-default-remote-name "straight")
 (straight-use-package '(use-package :build t))
 (setq use-package-always-ensure t)
+
 
 
 (provide 'init-package)

@@ -4,6 +4,8 @@
     (setq native-comp-deferred-compilation-deny-list '(".*pdf.*")) ; 禁用 =pdf-tools= 有关文件的本地化编译
   (setq native-comp-jit-deferred-compilation-deny-list '(".*pdf.*"))) ; 禁用 =pdf-tools= 有关文件的本地化编译
 
+
+
 (defun my/set-cdlatex-command-alist ()
   (setq cdlatex-command-alist
         '(("eq" "insert pairs of \\[ \\]" "\\[ ? \\]" cdlatex-position-cursor nil t t)
