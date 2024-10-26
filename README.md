@@ -3,7 +3,7 @@ My emacs setting based on:
 
 1. https://github.com/zilongshanren/.emacs.d
 
-2. https://gitee.com/mickey991/emacs-config/tree/master (for latex setup)
+2. https://gitee.com/mickey991/emacs-config/tree/master/init.el (for latex setup)
 
 3. https://config.phundrak.com/emacs/
 

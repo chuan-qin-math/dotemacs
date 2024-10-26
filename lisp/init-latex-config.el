@@ -260,24 +260,7 @@
 
 
 
-;; Strong Clean
-  (defun my-latex-clean ()
-    "Delete .toc, .bbl, .out, .synctex(busy), .synctex, .blg, .synctex.gz, .log, .fls files and auto folder."
-    (interactive)
-    (dolist (file (directory-files default-directory t "\\(?:\\.toc\\|\\.rel\\|\\.fdb_latexmk\\|\\.bbl\\|\\.out\\|\\.synctex(busy)\\|\\.synctex\\|\\.blg\\|\\.synctex\\.gz\\|\\.log\\|\\.aux\\|\\.fls\\|\\.nav\\|\\.snm\\)$"))
-      (when (file-exists-p file)
-        (delete-file file)))
-    (message "Cleaned LaTeX auxiliary files and auto folder."))
 
-  (add-hook 'TeX-command-finished-hook 'my-latex-clean)
-
-(defun my/set-latex-font ()
-  (interactive)
-  (require 'font-latex)
-  (unless my/is-terminal
-    ;; 使用 face-remap-add-relative 设置上下标字符为鲜艳红色
-    (face-remap-add-relative 'font-latex-script-char-face :foreground "#ff0000"))
-  )
 
 (use-package tex
   :defer 10

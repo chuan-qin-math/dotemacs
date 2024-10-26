@@ -104,6 +104,9 @@
 (add-to-list 'exec-path "/usr/local/bin")
 
 
+(setq my-is-terminal (not window-system))
+
+
 
 ;; Core
 (require 'init-basic)
