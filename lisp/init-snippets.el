@@ -70,7 +70,7 @@
   (yas-global-mode) ;; 全局启用 yasnippet
   :config
   ;; add in latex-mode the path to the snippet folder
-  (add-to-list 'yas-snippet-dirs "~/.emacs.legacy2/snippets/LaTeX-mode")
+  (add-to-list 'yas-snippet-dirs "~/.vanilla/snippets/LaTeX-mode")
 
   ;; 手动重新加载代码片段
   (yas-reload-all)
