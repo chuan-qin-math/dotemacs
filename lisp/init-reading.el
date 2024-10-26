@@ -24,19 +24,19 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-(use-package olivetti
-  :init
-  (setq olivetti-body-width nil)
-  :config
-  (defun distraction-free ()
-    "Distraction-free writing environment"
-    (interactive)
-    (if (equal olivetti-mode nil)
-        (olivetti-mode t)
-      (progn
-        (olivetti-mode 0))))
-  :bind
-  (("<f9>" . distraction-free)))
+;; (use-package olivetti
+;;   :init
+;;   (setq olivetti-body-width nil)
+;;   :config
+;;   (defun distraction-free ()
+;;     "Distraction-free writing environment"
+;;     (interactive)
+;;     (if (equal olivetti-mode nil)
+;;         (olivetti-mode t)
+;;       (progn
+;;         (olivetti-mode 0))))
+;;   :bind
+;;   (("<f9>" . distraction-free)))
 
 
 (use-package org-noter
@@ -50,6 +50,7 @@
 (use-package nov
   :ensure t
   :config
+  :defer t
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 
