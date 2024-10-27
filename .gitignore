@@ -17,4 +17,6 @@ var/
 /org-persist
 /org-persist/gc-lock.eld
 emacs-libvterm/
+nov-places
+
 
