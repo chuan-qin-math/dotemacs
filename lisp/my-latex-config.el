@@ -262,10 +262,12 @@
 ;; Adaptive Wrap configuration for LaTeX mode
 (use-package adaptive-wrap
   :defer t
-  :after auctex
   :straight (:build t)
-  :hook (LaTeX-mode . adaptive-wrap-prefix-mode)
-  :init (setq-default adaptive-wrap-extra-indent 0))
+  :hook ((LaTeX-mode . adaptive-wrap-prefix-mode)
+         ;; (nov-mode . adaptive-wrap-prefix-mode)
+         )
+  :init
+  (setq-default adaptive-wrap-extra-indent 0))
 
 
 

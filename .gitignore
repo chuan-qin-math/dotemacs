@@ -14,6 +14,7 @@ var/
 /org-protocol.reg
 /test-startup.sh
 /.project
+/org-persist
 /org-persist/gc-lock.eld
 emacs-libvterm/
 

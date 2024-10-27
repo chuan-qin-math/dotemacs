@@ -99,7 +99,8 @@
   :demand t)
 
 ;;straight
-(setq straight-base-dir "/Users/chuan/.vanilla/")
+;replace ~/.vanilla/ by your own .emacs.d path
+(setq straight-base-dir "~/.vanilla/")
 
 (defvar bootstrap-version)
 (defvar comp-deferred-compilation-deny-list ()) ; workaround for native compilation issues
