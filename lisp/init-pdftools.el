@@ -21,7 +21,19 @@
   (pdf-view-use-scaling nil) ;; Disable scaling for better performance
   (pdf-tools-handle-upgrades t) ;; Enable automatic upgrades
   :init
-  (setenv "PKG_CONFIG_PATH" "/opt/homebrew/Cellar/zlib/1.2.13/lib/pkgconfig:/opt/homebrew/lib/pkgconfig:/opt/X11/lib/pkgconfig:/opt/homebrew/Cellar/poppler/23.01.0/lib/pkgconfig:/opt/X11/share/pkgconfig")
+ (let ((m1-brew "/opt/homebrew")
+      (intel-brew "/usr/local")
+      (pkg-paths '("/lib/pkgconfig"
+                   "/opt/zlib/lib/pkgconfig"
+                   "/opt/poppler/lib/pkgconfig"
+                   "/share/pkgconfig")))
+  (setenv "PKG_CONFIG_PATH"
+          (mapconcat
+           'identity
+           (append
+            (mapcar (lambda (path) (concat m1-brew path)) pkg-paths)
+            (mapcar (lambda (path) (concat intel-brew path)) pkg-paths))
+           ":")))
   :hook
   ((pdf-tools-enabled . pdf-view-midnight-minor-mode)
    (pdf-view-mode-hook . (lambda () (pdf-view-fit-width-to-window))))
