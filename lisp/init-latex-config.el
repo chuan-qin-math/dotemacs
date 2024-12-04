@@ -277,7 +277,12 @@
   ;; (TeX-view-program-list
   ;;  '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o")))
                                         ; Skim 配置
-  (TeX-view-program-selection '((output-pdf "PDF Tools"))) ; 使用 pdf-tools 预览 pdf
+   (TeX-view-program-selection '((output-pdf "PDF Tools")))
+                                        ; 使用 pdf-tools 预览 pdf
+
+
+  
+
 
   (setq-default TeX-master t)           ; 默认询问主文件
 
