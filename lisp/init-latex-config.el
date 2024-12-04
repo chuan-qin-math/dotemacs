@@ -281,7 +281,7 @@
                                         ; 使用 pdf-tools 预览 pdf
 
 
-  
+
 
 
   (setq-default TeX-master t)           ; 默认询问主文件
