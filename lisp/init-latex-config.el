@@ -83,8 +83,10 @@
           ("theorem" "\\begin{theorem}\n\\label{thm:?}\n\n\\end{theorem}" nil))))
 
 (defun my/set-cdlatex-math-modify-alist ()
-    (setq cdlatex-math-modify-alist
-          '((?t "\\mathbb" "" t nil nil))))
+  "Set custom cdlatex math modify alist."
+  (setq cdlatex-math-modify-alist
+        '((?t "\\mathbb" "" t nil nil)   ; `t` -> \mathbb
+          (?C "\\mathcal" "" t nil nil)))) ; `C` -> \mathcal
 
 (defun my/set-cdlatex-math-symbol-alist ()
         (setq cdlatex-math-symbol-alist
@@ -106,7 +108,8 @@
                 (?| ("\\parallel" "\\mid" "\\perp"))
                 (?S ("\\Sigma" "\\sum_{?}^{}"))
                 (?{ ("\\subset" "\\prec" "\\subseteq"))
-                (?} ("\\supset" "\\succ" "\\supseteq")))))
+                (?} ("\\supset" "\\succ" "\\supseteq"))
+                (?F ( "\\rightarrow" nil nil)) )))
 
 (use-package cdlatex
   :straight (:host github :repo "cdominik/cdlatex" )
