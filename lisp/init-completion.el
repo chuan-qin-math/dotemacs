@@ -28,8 +28,10 @@
   ;;       ("C-c C-/" . company-other-backend))
  :init (global-company-mode)
   :config
-  (setq company-minimum-prefix-length 1
-        company-idle-delay 0.1) ;; 0.1s后开始补全
+  (setq company-minimum-prefix-length 2
+        company-idle-delay 0.2 ;; 0.1s后开始补全
+        company-selection-wrap-around t
+        )
     (set-face-attribute 'company-tooltip nil :inherit 'fixed-pitch))
 
 (setq auto-completion-tab-key-behavior nil)
@@ -58,7 +60,7 @@
     (setq corfu-min-width 80)
     (setq corfu-max-width 100)
     (setq corfu-auto-delay 0.2)
-    (setq corfu-auto-prefix 1)
+    (setq corfu-auto-prefix 2)
     (setq corfu-on-exact-match nil)
     (global-corfu-mode)
     (corfu-popupinfo-mode)
