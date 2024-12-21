@@ -86,7 +86,7 @@
   "Set custom cdlatex math modify alist."
   (setq cdlatex-math-modify-alist
         '((?t "\\mathbb" "" t nil nil)   ; `t` -> \mathbb
-          (?C "\\mathcal" "" t nil nil)))) ; `C` -> \mathcal
+          (?F "\\mathfrak" "" t nil nil)))) ; `F` -> \mathfrak
 
 (defun my/set-cdlatex-math-symbol-alist ()
         (setq cdlatex-math-symbol-alist
