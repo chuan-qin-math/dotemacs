@@ -179,31 +179,40 @@
         reftex-insert-label-flags '("s" "sftpd")
         reftex-ref-macro-prompt nil ; ~cte<tab>~ 后不提示类型
         reftex-ref-style-default-list '("Cleveref"))) ; 默认引用风格 Used to "Default"
+(defun get-bibtex-keys (file)
+  (with-current-buffer (find-file-noselect file)
+    (mapcar 'car (bibtex-parse-keys))))
+
+(defun LaTeX-add-all-bibitems-from-bibtex ()
+  (interactive)
+  (mapc 'LaTeX-add-bibitems
+        (apply 'append
+               (mapcar 'get-bibtex-keys (reftex-get-bibfile-list)))))
 
 (defun my/more-prettified-symbols ()
-  (require 'tex-mode) ; 载入 tex--prettify-symbols-alist 变量
+  (require 'tex-mode)                   ; 载入 tex--prettify-symbols-alist 变量
   (mapc (lambda (pair) (delete pair tex--prettify-symbols-alist))
         '(("\\supset" . 8835)))
   (mapc (lambda (pair) (cl-pushnew pair tex--prettify-symbols-alist))
-        '(("\\big(" . #x2987) ; Notation left image bracket
+        '(("\\big(" . #x2987)           ; Notation left image bracket
           ("\\big)" . #x2988)
-          ("\\Big(" . #x2985) ; left white parenthesis
+          ("\\Big(" . #x2985)           ; left white parenthesis
           ("\\Big)" . #x2986)
-          ("\\bigg(" . #xFF5F) ; full width left white parenthesis
+          ("\\bigg(" . #xFF5F)          ; full width left white parenthesis
           ("\\bigg)" . #xFF60)
-          ("\\big[" . #x3010) ; full width left square bracket
+          ("\\big[" . #x3010)           ; full width left square bracket
           ("\\big]" . #x3011)
-          ("\\Big[" . #x27E6) ; math left white square bracket
+          ("\\Big[" . #x27E6)           ; math left white square bracket
           ("\\Big]" . #x27E7)
-          ("\\bigg[" . #x301A) ; left white square bracket
+          ("\\bigg[" . #x301A)          ; left white square bracket
           ("\\bigg]" . #x301B)
-          ("\\{" . #xFF5B) ; full width curly bracket
+          ("\\{" . #xFF5B)              ; full width curly bracket
           ("\\}" . #xFF5D)
-          ("\\big\\{" . #xFF5B) ;
+          ("\\big\\{" . #xFF5B)         ;
           ("\\big\\}" . #xFF5D)
-          ("\\Big\\{" . #xFF5B) ; white bracket
+          ("\\Big\\{" . #xFF5B)         ; white bracket
           ("\\Big\\}" . #xFF5D)
-          ("\\bigg\\{" . #xFF5B) ; white bracket
+          ("\\bigg\\{" . #xFF5B)        ; white bracket
           ("\\bigg\\}" . #xFF5D)
           ("\\Z" . 8484)
           ("\\Q" . 8474)
@@ -280,7 +289,7 @@
   ;; (TeX-view-program-list
   ;;  '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o")))
                                         ; Skim 配置
-   (TeX-view-program-selection '((output-pdf "PDF Tools")))
+  (TeX-view-program-selection '((output-pdf "PDF Tools")))
                                         ; 使用 pdf-tools 预览 pdf
 
 
@@ -302,11 +311,22 @@
   (my/preview-latex-config)
   (my/reftex-config)
   (my/more-prettified-symbols)
+  ;; (get-bibtex-keys)
+  ;; (LaTeX-add-all-bibitems-from-bibtex)
   ;; (my/set-latex-font)
   ;; (my/latex-tab-command)
 
   ;; 设置 AUCTeX 编译文件时询问，t 为默认当前文件为主文件
   (setq-default TeX-master nil)
+
+
+
+  ;; reftex 设置
+  (setq reftex-default-bibliography '("reference.bib"))
+  (setq reftex-bibliography-commands '("cite" "citep" "citet" "citeyear")) ;; 需要的引用命令
+  (setq reftex-label-alist '(("article" ?a "Article" "~\\cite{" nil nil)
+                             ("book"    ?b "Book"    "~\\cite{" nil nil)))
+  (setq reftex-show-bibliography t) ;; 显示参考文献
 
   ;; 启动 Emacs 服务器
   (server-start))
@@ -314,12 +334,6 @@
 
 
 
-;; reftex 设置
-(setq reftex-default-bibliography '("reference.bib"))
-(setq reftex-bibliography-commands '("cite" "citep" "citet" "citeyear")) ;; 需要的引用命令
-(setq reftex-label-alist '(("article" ?a "Article" "~\\cite{" nil nil)
-                           ("book"    ?b "Book"    "~\\cite{" nil nil)))
-(setq reftex-show-bibliography t) ;; 显示参考文献
 
 
 
