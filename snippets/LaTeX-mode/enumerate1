@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: enumerate1
-# key: enumerate1
-# --
-\begin{enumerate}[(1)]
-\item $1
-\end{enumerate}

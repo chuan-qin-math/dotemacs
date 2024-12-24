@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: mathfrak
-# key: mathfrak
-# --
-mathfrak{$1}$0

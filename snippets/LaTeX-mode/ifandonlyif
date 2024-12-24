@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: ind
-# key: ind
-# --
-\Ind_{$1}^{$2}

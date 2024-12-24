@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: fk
-# key: fk
-# --
-\mathfrak{$1}
