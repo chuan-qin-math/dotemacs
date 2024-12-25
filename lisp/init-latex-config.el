@@ -354,14 +354,15 @@
     ;; 设置 company-backends 的顺序，使得 math, auctex 和 cdlatex 在前
     (setq-local company-backends
                 (append '((cdlatex-tab company-math-symbols-latex company-latex-commands
-                           company-auctex-macros company-auctex-symbols company-auctex-environments
-                           ))
+                                       company-auctex-macros company-auctex-symbols company-auctex-environments
+                                       ))
                         ;; 其余 backends 保持不变，但 company-dabbrev 位于后面
                         (remove 'company-dabbrev company-backends)
                         '(company-dabbrev))))
   (add-hook 'TeX-mode-hook #'my-latex-mode-setup)
-  (add-hook 'LaTeX-mode-hook #'my-latex-mode-setup))
-
+  (add-hook 'LaTeX-mode-hook #'my-latex-mode-setup)
+  (setq company-latex-symbols 'default)  ;; 加载默认符号集，减少不必要的符号
+)
 
 (use-package auctex-latexmk
   :straight (auctex-latexmk :fetcher github :repo "emacsmirror/auctex-latexmk") ; fix a incompatibility bug by non-author.
