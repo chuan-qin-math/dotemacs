@@ -375,4 +375,6 @@
                '("myLatexMK" "latexmk %(-PDF)%S%(mode) %(file-line-error) -pvc %(extraopts) %t" TeX-run-latexmk nil (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMK with -pvc")))
 
 
+(add-hook 'latex-mode-hook 'line-number-mode)
+
 (provide 'init-latex-config)
