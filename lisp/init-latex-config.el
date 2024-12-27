@@ -353,8 +353,7 @@
     "Set up company backends for LaTeX mode."
     ;; 设置 company-backends 的顺序，使得 math, auctex 和 cdlatex 在前
     (setq-local company-backends
-                (append '((cdlatex-tab company-math-symbols-latex
-                                       company-auctex-macros company-auctex-symbols company-auctex-environments
+                (append '((cdlatex-tab company-auctex-macros company-auctex-symbols company-auctex-environments company-math-symbols-latex
                                        ))
                         ;; 其余 backends 保持不变，但 company-dabbrev 位于后面
                         (remove 'company-dabbrev company-backends company-latex-commands)
