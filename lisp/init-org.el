@@ -188,6 +188,7 @@
   :ensure t
   :pin gnu)
 
+
 (with-eval-after-load 'org
   (progn
 
@@ -739,7 +740,7 @@ object (e.g., within a comment).  In these case, you need to use
              "* %U %:annotation\n\n%:initial\n\n%?")
             ("p" "Protocol" entry (file+headline org-agenda-file-note "Inbox")
              "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-	        ("L" "Protocol Link" entry (file+headline org-agenda-file-note "Inbox")
+            ("L" "Protocol Link" entry (file+headline org-agenda-file-note "Inbox")
              "* %? [[%:link][%:description]] \nCaptured On: %U")
             ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
              "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
