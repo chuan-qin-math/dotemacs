@@ -279,7 +279,9 @@
   :straight auctex
   :custom
   ;; AUCTeX 设置
-  (TeX-parse-self t)                     ; 自动解析 tex 文件
+  (TeX-parse-self t)                    ; 自动解析 tex 文件
+  (setq TeX-auto-local nil)
+  (setq LaTeX-enable-input-method nil)
   (TeX-PDF-mode t)                       ; 启用 PDF 模式
   (TeX-DVI-via-PDFTeX t)                 ; 使用 PDFTeX 生成 DVI
   (TeX-source-correlate-mode t)          ; 启用源代码关联

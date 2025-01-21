@@ -298,9 +298,9 @@
   :config
   (define-key embark-identifier-map "R" #'consult-ripgrep)
   (define-key embark-identifier-map (kbd "C-s") #'consult-line)
-  (define-key embark-region-map "D" 'youdao-dictionary-search-async)
+  ;; (define-key embark-region-map "D" 'youdao-dictionary-search-async)
 
-  (define-key embark-file-map (kbd "E") #'consult-directory-externally)
+  ;; (define-key embark-file-map (kbd "E") #'consult-directory-externally)
   (define-key embark-file-map (kbd "U") #'consult-snv-unlock)
   (define-key embark-file-map (kbd "H") #'my-calculate-file-md5)
   )

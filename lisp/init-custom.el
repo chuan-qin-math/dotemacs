@@ -91,7 +91,7 @@
                     zilongshanren-package-archives-alist)))
 
 (defcustom zilongshanren-theme-alist
-  '((default . doom-one)
+  '((default . doom-solarized-light)
     (pro     . doom-monokai-pro)
     (dark    . doom-dark+)
     (light   . doom-one-light)
@@ -105,7 +105,7 @@
                 :value-type (symbol :tag "Internal theme")))
 
 (defcustom zilongshanren-auto-themes '(("8:00"  . doom-one-light)
-				                 ("19:00" . doom-one))
+                                 ("19:00" . doom-one))
   "List of themes mapped to the time they should be loaded.
 
 The keywords `:sunrise' and `:sunset' can be used for the time
