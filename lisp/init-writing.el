@@ -24,56 +24,9 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-(use-package rime
-  :init
-  (setq default-input-method "rime")
-  :config
-  (progn (set-face-attribute 'rime-default-face nil :foreground "#839496" :background "#073642")
-         (setq rime-disable-predicates
-               '(rime-predicate-evil-mode-p
-                 rime-predicate-after-alphabet-char-p
-                 rime-predicate-punctuation-line-begin-p
-                 rime-predicate-prog-in-code-p))
-         (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
-         (setq rime-emacs-module-header-root "/opt/homebrew/opt/emacs-mac/include")
-         (setq rime-show-candidate 'posframe)
-         (setq rime-share-data-dir "~/Library/Rime")
-         (setq rime-user-data-dir "~/Library/Rime")
-         (if sys/win32p
-             (progn
-               (setq rime-share-data-dir "C:\\Users\\lionqu\\AppData\\Roaming\\Rime")
-               (setq rime-user-data-dir "C:\\Users\\lionqu\\AppData\\Roaming\\Rime")
-               ))
-         (setq rime-posframe-properties
-               (list :background-color "#073642"
-                     :foreground-color "#839496"
-                     :internal-border-width 1))))
-
-(use-package pyim
-  :ensure t
-  :commands (pyim-cregexp-build)
-  :init
-  (defun eh-orderless-regexp (orig_func component)
-    (let ((result (funcall orig_func component)))
-      (pyim-cregexp-build result)))
 
 
-  (defun toggle-chinese-search ()
-    (interactive)
-    (if (not (advice-member-p #'eh-orderless-regexp 'orderless-regexp))
-        (advice-add 'orderless-regexp :around #'eh-orderless-regexp)
-      (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
 
-  (defun disable-py-search (&optional args)
-    (if (advice-member-p #'eh-orderless-regexp 'orderless-regexp)
-        (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
-
-  ;; (advice-add 'exit-minibuffer :after #'disable-py-search)
-  (add-hook 'minibuffer-exit-hook 'disable-py-search)
-
-  (global-set-key (kbd "s-p") 'toggle-chinese-search)
-  ;; use #$#pyim to search chinese and also es.exe locate 子龙
-  )
 
 
 (use-package ispell-minor-mode
@@ -111,14 +64,7 @@
   :after ox
   :commands org-hugo-export-to-md)
 
-(use-package pangu-spacing
-  :defer t
-  :init (progn (global-pangu-spacing-mode 1)
 
-               ;; Always insert `real' space in org-mode.
-               (add-hook 'org-mode-hook
-                         (lambda ()
-                           (setq-local pangu-spacing-real-insert-separtor t)))))
 
 
 (use-package markdown-mode

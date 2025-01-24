@@ -142,7 +142,6 @@
 (require 'init-python)
 
  (require 'init-pdftools)
-;; (require 'my-latex-config)
 ;; (require 'init-latex-packages)
 (require 'init-latex-config)
 ;; (require 'my-pdftools)
