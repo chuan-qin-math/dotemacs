@@ -75,6 +75,7 @@
   (setq pdf-view-use-scaling t
         pdf-view-use-imagemagick nil)
   (add-hook 'pdf-view-mode-hook 'auto-revert-mode)
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 
   )
 
