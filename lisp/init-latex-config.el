@@ -287,11 +287,11 @@
   (TeX-source-correlate-mode t)          ; 启用源代码关联
   (TeX-source-correlate-method 'synctex) ; 设置源代码关联方法为 SyncTeX
   (TeX-source-correlate-start-server t)  ; 启动服务器以支持关联
-  ;; (TeX-view-program-selection '((output-pdf "Skim"))) ; 设置 PDF 查看程序
-  ;; (TeX-view-program-list
-  ;;  '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o")))
+   (TeX-view-program-selection '((output-pdf "Skim"))) ; 设置 PDF 查看程序
+   (TeX-view-program-list
+    '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o")))
                                         ; Skim 配置
-  (TeX-view-program-selection '((output-pdf "PDF Tools")))
+  ;; (TeX-view-program-selection '((output-pdf "PDF Tools")))
                                         ; 使用 pdf-tools 预览 pdf
 
 
