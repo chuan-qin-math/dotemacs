@@ -333,7 +333,10 @@
   ;; 启动 Emacs 服务器
   (server-start))
 
-
+;; 在 C-c C-c 的编译选项中增加 xelatex
+(eval-after-load "tex"
+  '(add-to-list 'TeX-command-list
+                '("XeLaTeX" "xelatex -interaction=nonstopmode %s" TeX-run-command t t :help "XeLaTeX") t))
 
 
 
