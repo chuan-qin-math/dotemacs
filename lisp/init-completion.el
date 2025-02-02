@@ -78,7 +78,7 @@
       (interactive)
       (let ((completion-extra-properties corfu--extra)
             completion-cycle-threshold completion-cycling)
-        (toggle-chinese-search)
+        ;; (toggle-chinese-search)
         (apply #'consult-completion-in-region completion-in-region--data)))
     (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
 

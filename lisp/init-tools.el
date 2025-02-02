@@ -283,12 +283,12 @@
   :init
   (add-hook 'prog-mode-hook #'ws-butler-mode))
 
-(use-package pinyinlib
-  :after orderless
-  :autoload pinyinlib-build-regexp-string
-  :init
-  (defun completion--regex-pinyin (str)
-    (orderless-regexp (pinyinlib-build-regexp-string str)))
-  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin))
+;; (use-package pinyinlib
+;;   :after orderless
+;;   :autoload pinyinlib-build-regexp-string
+;;   :init
+;;   (defun completion--regex-pinyin (str)
+;;     (orderless-regexp (pinyinlib-build-regexp-string str)))
+;;   (add-to-list 'orderless-matching-styles 'completion--regex-pinyin))
 
 (provide 'init-tools)

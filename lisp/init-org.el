@@ -242,17 +242,17 @@
 
 
     ;; https://emacs-china.org/t/ox-hugo-auto-fill-mode-markdown/9547/4
-    (defadvice org-hugo-paragraph (before org-hugo-paragraph-advice
-                                          (paragraph contents info) activate)
-      "Join consecutive Chinese lines into a single long line without
-unwanted space when exporting org-mode to hugo markdown."
-      (let* ((origin-contents (ad-get-arg 1))
-             (fix-regexp "[[:multibyte:]]")
-             (fixed-contents
-              (replace-regexp-in-string
-               (concat
-                "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
-        (ad-set-arg 1 fixed-contents)))
+  ;;   (defadvice org-hugo-paragraph (before org-hugo-paragraph-advice
+;;                                           (paragraph contents info) activate)
+;;       "Join consecutive Chinese lines into a single long line without
+;; unwanted space when exporting org-mode to hugo markdown."
+;;       (let* ((origin-contents (ad-get-arg 1))
+;;              (fix-regexp "[[:multibyte:]]")
+;;              (fixed-contents
+;;               (replace-regexp-in-string
+;;                (concat
+;;                 "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
+;;         (ad-set-arg 1 fixed-contents)))
 
 
     (require 'org-tempo)
@@ -408,20 +408,20 @@ object (e.g., within a comment).  In these case, you need to use
     ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
     (setq org-crypt-key nil)
 
-    (require 'cal-china)
+    ;; (require 'cal-china)
     ;; diary for chinese birthday
     ;; https://emacs-china.org/t/topic/2119/14
-    (defun my--diary-chinese-anniversary (lunar-month lunar-day &optional year mark)
-      (if year
-          (let* ((d-date (diary-make-date lunar-month lunar-day year))
-                 (a-date (calendar-absolute-from-gregorian d-date))
-                 (c-date (calendar-chinese-from-absolute a-date))
-                 (date a-date)
-                 (cycle (car c-date))
-                 (yy (cadr c-date))
-                 (y (+ (* 100 cycle) yy)))
-            (diary-chinese-anniversary lunar-month lunar-day y mark))
-        (diary-chinese-anniversary lunar-month lunar-day year mark)))
+    ;; (defun my--diary-chinese-anniversary (lunar-month lunar-day &optional year mark)
+    ;;   (if year
+    ;;       (let* ((d-date (diary-make-date lunar-month lunar-day year))
+    ;;              (a-date (calendar-absolute-from-gregorian d-date))
+    ;;              (c-date (calendar-chinese-from-absolute a-date))
+    ;;              (date a-date)
+    ;;              (cycle (car c-date))
+    ;;              (yy (cadr c-date))
+    ;;              (y (+ (* 100 cycle) yy)))
+    ;;         (diary-chinese-anniversary lunar-month lunar-day y mark))
+    ;;     (diary-chinese-anniversary lunar-month lunar-day year mark)))
 
 
     (setq org-todo-keywords
@@ -626,17 +626,20 @@ object (e.g., within a comment).  In these case, you need to use
 
     (setq org-babel-python-command "python3")
 
-    (progn
+    ;; (progn
 
-      (use-package cal-china-x
-        :ensure t
-        :demand t)
-      (setq mark-holidays-in-calendar t)
-      (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
-      (setq cal-china-x-general-holidays '((holiday-lunar 1 15 "元宵节")))
-      (setq calendar-holidays
-            (append cal-china-x-important-holidays
-                    cal-china-x-general-holidays)))
+    ;;   ;; (use-package cal-china-x
+    ;;   ;;   :ensure t
+    ;;   ;;   :demand t)
+    ;;   ;; (setq mark-holidays-in-calendar t)
+    ;;   ;; (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
+    ;;   ;; (setq cal-china-x-general-holidays '((holiday-lunar 1 15 "元宵节")))
+    ;;   ;; (setq calendar-holidays
+    ;;   ;;       (append cal-china-x-important-holidays
+    ;;   ;;               cal-china-x-general-holidays))
+    ;;   ;;
+    ;;   ;;
+    ;;   )
     (require 'ox-md nil t)
 
     ;; define the refile targets

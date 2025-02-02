@@ -23,29 +23,52 @@
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
-
 ;; Python Mode
-;; Install: pip install pyflakes autopep8
+;; Install: pip install flake8 black pytest
 (use-package python
   :ensure t
-  :hook (inferior-python-mode . (lambda ()
-                                  (process-query-on-exit-flag
-                                   (get-process "Python"))))
+  :hook ((inferior-python-mode . (lambda ()
+                                   (process-query-on-exit-flag
+                                    (get-process "Python"))))
+         (python-mode . flycheck-mode))
   :init
   ;; Disable readline based native completion
   (setq python-shell-completion-native-enable nil)
   :config
-  (global-leader
-    :major-modes
-    '(python-mode t)
-    ;;and the keymaps:
-    :keymaps
-    '(python-mode-map)
-    "e" 'live-py-set-version)
-  (setq python-shell-interpreter "python3")
+  (setq python-shell-interpreter "python3"))
 
-  ;; Live Coding in Python
-  (use-package live-py-mode))
+;; Live Coding in Python
+(use-package live-py-mode
+  :ensure t)
+
+;; 运行 Python REPL
+(require 'init-funcs)
+(with-eval-after-load 'python
+  (define-key python-mode-map (kbd "C-c C-p") 'run-python-in-vterm))
+
+
+;; 代码格式化: Black (推荐) 或 autopep8 (二选一)
+(use-package blacken
+  :ensure t
+  :hook (python-mode . blacken-mode))
+
+;; (use-package py-autopep8
+;;   :ensure t
+;;   :hook (python-mode . py-autopep8-enable-on-save)) ;; 如果要用 autopep8，取消注释
+
+;; 调试支持 (DAP)
+(use-package dap-mode
+  :ensure t
+  :after lsp-mode
+  :config
+  (dap-mode 1)
+  (dap-ui-mode 1))
+
+;; Python 测试 (pytest)
+(use-package pytest
+  :ensure t
+  :config
+  (setq pytest-command "pytest"))
 
 
 

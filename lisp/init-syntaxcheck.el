@@ -30,7 +30,12 @@
 
 (use-package flycheck
   :ensure t
+   :hook (python-mode . flycheck-mode)
   :config
+ ;; 让 flycheck 自动检测 Python 代码
+  (setq flycheck-python-pycompile-executable "python3")
+  (setq flycheck-flake8-executable "flake8")
+  (setq flycheck-flake8-args "--max-line-length=120")
   (when sys/win32p
     (setq flycheck-check-syntax-automatically '(save)))
 
@@ -53,7 +58,7 @@ See URL `https://eslint.org/'."
     :verify
     (lambda (_)
       (let* ((default-directory
-               (flycheck-compute-working-directory 'javascript-eslint))
+              (flycheck-compute-working-directory 'javascript-eslint))
              (have-config (flycheck-eslint-config-exists-p)))
         (list
          (flycheck-verification-result-new
@@ -88,7 +93,8 @@ See URL `https://github.com/zaach/jsonlint'."
     :error-filter
     (lambda (errors)
       (flycheck-sanitize-errors (flycheck-increment-error-columns errors)))
-    :modes json-mode))
+    :modes json-mode)
+  )
 
 
 (use-package flymake-posframe

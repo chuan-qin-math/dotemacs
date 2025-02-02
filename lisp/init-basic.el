@@ -274,6 +274,7 @@
 ;; (setq debug-on-error nil)
  (with-eval-after-load 'quail (defun quail-completion ()))
 (setq default-input-method nil)
+(setq quail-mode nil)
 (defun quail-use-package (package) nil)
 (defun my-disable-quail ()
   "Prevent Quail from loading."
@@ -281,9 +282,11 @@
   (fmakunbound 'quail-define-rules)
   (fmakunbound 'quail-use-package))
 
+
 (my-disable-quail)
 
-
+(with-eval-after-load 'quail
+  (setq quail-mode nil))
 
 (use-package tar-mode
   :ensure nil)
