@@ -1593,8 +1593,10 @@ and ending with the extension of the requested TYPE."
   (let ((file-name (buffer-file-name)))
     (if file-name
         (progn
-          (split-window-below) ; 水平分割窗口
-          (other-window 1)     ; 切换到下方窗口
+          ;; (split-window-below)
+                                        ; 水平分割窗口
+          ;; (other-window 1)
+                                        ; 切换到下方窗口
           (vterm)              ; 打开 vterm
           (vterm-send-string (concat "python3 " file-name "\n"))) ; 运行 Python 文件
       (message "Buffer is not associated with a file."))))

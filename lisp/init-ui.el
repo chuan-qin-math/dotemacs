@@ -108,7 +108,7 @@
 (add-hook 'after-change-major-mode-hook #'modeline-contitional-buffer-encoding)
 
 ;; set font: Cascadia code
-(defvar phundrak/default-font-size 90
+(defvar phundrak/default-font-size 230
   "Default font size.")
 
 (defvar phundrak/default-font-name "Cascadia Code"
