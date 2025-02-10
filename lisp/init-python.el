@@ -70,6 +70,20 @@
   :config
   (setq pytest-command "pytest"))
 
+(use-package highlight-indent-guides
+  :straight t
+  :hook (python-mode . highlight-indent-guides-mode)
+  :config
+  (setq highlight-indent-guides-method 'character)  ;; 采用竖线风格
+  (setq highlight-indent-guides-responsive 'top))   ;; 仅高亮当前层级
+
+(add-hook 'python-mode-hook #'hs-minor-mode)
+(defun my-python-hide-all ()
+  "打开 Python 文件时自动折叠所有代码块。"
+  (hs-minor-mode 1)  ;; 启用 hs-minor-mode
+  (hs-hide-all))      ;; 折叠所有代码块
+(add-hook 'python-mode-hook #'my-python-hide-all)
+
 
 
 (provide 'init-python)

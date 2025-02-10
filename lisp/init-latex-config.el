@@ -247,17 +247,17 @@
 ;;    (t (indent-for-tab-command))))
 
 
-(use-package outline
-  :init
-  (setq outline-minor-mode-prefix (kbd "C-o"))
-  (setq outline-minor-mode-prefix (kbd "C-'"))
-  :bind
-  (:map outline-minor-mode-map
-        ("C-' t" . outline-hide-body)
-        ("C-' e" . outline-show-entry)
-        ("C-' p" . outline-previous-visible-heading)
-        ("C-' n" . outline-next-visible-heading)
-        ("C-' a" . outline-show-all)))
+;; (use-package outline
+;;   :init
+;;   (setq outline-minor-mode-prefix (kbd "C-o"))
+;;   (setq outline-minor-mode-prefix (kbd "C-'"))
+;;   :bind
+;;   (:map outline-minor-mode-map
+;;         ("C-' t" . outline-hide-body)
+;;         ("C-' e" . outline-show-entry)
+;;         ("C-' p" . outline-previous-visible-heading)
+;;         ("C-' n" . outline-next-visible-heading)
+;;         ("C-' a" . outline-show-all)))
 
 (defun my/latex-hook ()
   (turn-on-cdlatex)
@@ -308,11 +308,11 @@
 
   :config
   ;; 自定义设置
-  (my/TeX-fold-config)
-  (my/TeX-fonts-config)
-  (my/preview-latex-config)
+  ;; (my/TeX-fold-config)
+  ;; (my/TeX-fonts-config)
+  ;; (my/preview-latex-config)
   (my/reftex-config)
-  (my/more-prettified-symbols)
+  ;; (my/more-prettified-symbols)
   ;; (get-bibtex-keys)
   ;; (LaTeX-add-all-bibitems-from-bibtex)
   ;; (my/set-latex-font)

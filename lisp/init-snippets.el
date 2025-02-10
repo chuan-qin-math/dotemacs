@@ -98,7 +98,7 @@
   (defun my/hippie-expand-with-company ()
     "Use `company` completion with `hippie-expand`, prioritizing yasnippet and cdlatex."
     (interactive)
-    (let ((company-candidates (company--candidates))
+    (let ((company-candidates (company-candidates))
           (yas-fallback-behavior 'return-nil)) ;; 允许 yasnippet 返回 nil
       ;; 尝试展开 yasnippet
       (if (yas-expand)
