@@ -355,29 +355,32 @@
   :after (company auctex)
   :config
   (defun my-latex-mode-setup ()
-    "Set up company backends for LaTeX mode."
-    ;; 设置 company-backends 的顺序，使得 math, auctex 和 cdlatex 在前
+    "Optimize company backends for LaTeX mode."
     (setq-local company-backends
-                (append '((cdlatex-tab company-auctex-macros company-auctex-symbols company-auctex-environments company-math-symbols-latex
-                                       ))
-                        ;; 其余 backends 保持不变，但 company-dabbrev 位于后面
-                        (remove 'company-dabbrev company-backends company-latex-commands)
-                        '(company-dabbrev))))
-  (add-hook 'TeX-mode-hook #'my-latex-mode-setup)
-  (add-hook 'LaTeX-mode-hook #'my-latex-mode-setup)
-  (setq company-latex-symbols 'default)  ;; 加载默认符号集，减少不必要的符号
-)
+                (list '(cdlatex-tab company-auctex-macros company-auctex-symbols
+                                    company-auctex-environments company-math-symbols-latex)
+                      company-backends))) ;; 直接使用已有 backends，避免 `append`
 
-(use-package auctex-latexmk
-  :straight (auctex-latexmk :fetcher github :repo "emacsmirror/auctex-latexmk") ; fix a incompatibility bug by non-author.
-  :defer 5
-  :after tex
-  :init
-  (auctex-latexmk-setup)
-  :config
-  (setq auctex-latexmk-inherit-TeX-PDF-mode t)
-  (add-to-list 'TeX-command-list
-               '("myLatexMK" "latexmk %(-PDF)%S%(mode) %(file-line-error) -pvc %(extraopts) %t" TeX-run-latexmk nil (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMK with -pvc")))
+  ;; 仅在 `my-latex-mode-setup` 未被添加时才添加
+  (unless (member 'my-latex-mode-setup TeX-mode-hook)
+    (add-hook 'TeX-mode-hook #'my-latex-mode-setup))
+  (unless (member 'my-latex-mode-setup LaTeX-mode-hook)
+    (add-hook 'LaTeX-mode-hook #'my-latex-mode-setup))
+
+  ;; 限制 `company-math` 仅加载默认符号集，减少计算量
+  (setq company-latex-symbols 'default))
+
+
+;; (use-package auctex-latexmk
+;;   :straight (auctex-latexmk :fetcher github :repo "emacsmirror/auctex-latexmk") ; fix a incompatibility bug by non-author.
+;;   :defer 5
+;;   :after tex
+;;   :init
+;;   (auctex-latexmk-setup)
+;;   :config
+;;   (setq auctex-latexmk-inherit-TeX-PDF-mode t)
+;;   (add-to-list 'TeX-command-list
+;;                '("myLatexMK" "latexmk %(-PDF)%S%(mode) %(file-line-error) -pvc %(extraopts) %t" TeX-run-latexmk nil (plain-tex-mode latex-mode doctex-mode) :help "Run LatexMK with -pvc")))
 
 
 (add-hook 'latex-mode-hook 'line-number-mode)
