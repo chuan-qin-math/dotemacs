@@ -359,7 +359,9 @@
     (setq-local company-backends
                 (list '(cdlatex-tab company-auctex-macros company-auctex-symbols
                                     company-auctex-environments company-math-symbols-latex)
-                      company-backends))) ;; 直接使用已有 backends，避免 `append`
+                       company-backends
+                      ))) ;; 直接使用已有 backends，避免 `append`
+
 
   ;; 仅在 `my-latex-mode-setup` 未被添加时才添加
   (unless (member 'my-latex-mode-setup TeX-mode-hook)
