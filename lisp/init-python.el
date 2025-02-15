@@ -84,6 +84,8 @@
   (hs-hide-all))      ;; 折叠所有代码块
 (add-hook 'python-mode-hook #'my-python-hide-all)
 
+(setq python-indent-offset 4)  ;; Python 代码缩进 4 个空格
+(electric-indent-mode 1)
 
 
 (provide 'init-python)
