@@ -86,6 +86,8 @@
 
 (setq python-indent-offset 4)  ;; Python 代码缩进 4 个空格
 (electric-indent-mode 1)
+(add-hook 'python-mode-hook 'display-line-numbers-mode) ;开启行号
+
 
 
 (provide 'init-python)

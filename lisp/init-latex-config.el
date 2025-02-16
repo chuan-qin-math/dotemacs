@@ -338,6 +338,7 @@
   '(add-to-list 'TeX-command-list
                 '("XeLaTeX" "xelatex -interaction=nonstopmode %s" TeX-run-command t t :help "XeLaTeX") t))
 
+(add-to-list 'auto-mode-alist '("\\.tex\\'" . latex-mode)) ;确保 .tex 文件被正确识别
 
 
 
