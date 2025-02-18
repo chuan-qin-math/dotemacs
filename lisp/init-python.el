@@ -48,9 +48,10 @@
 
 
 ;; 代码格式化: Black (推荐) 或 autopep8 (二选一)
-(use-package blacken
-  :ensure t
-  :hook (python-mode . blacken-mode))
+(use-package python-black
+  :demand t
+  :after python
+  :hook (python-mode . python-black-on-save-mode-enable-dwim))
 
 ;; (use-package py-autopep8
 ;;   :ensure t
