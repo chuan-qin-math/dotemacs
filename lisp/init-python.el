@@ -28,36 +28,30 @@
 (use-package python
   :ensure t
   :hook ((inferior-python-mode . (lambda ()
-                                   (process-query-on-exit-flag
-                                    (get-process "Python"))))
+                                    (process-query-on-exit-flag
+                                     (get-process "Python"))))
          (python-mode . flycheck-mode))
   :init
-  ;; Disable readline based native completion
   (setq python-shell-completion-native-enable nil)
   :config
-  (setq python-shell-interpreter "python3"))
+  (setq python-shell-interpreter "python3")
+  (setq python-indent-offset 4))
 
-;; Live Coding in Python
-(use-package live-py-mode
-  :ensure t)
+;; 关闭 electric-indent 防止缩进异常
+;; (add-hook 'python-mode-hook (lambda () (electric-indent-local-mode -1)))
 
-;; 运行 Python REPL
+;; Python REPL
 (require 'init-funcs)
 (with-eval-after-load 'python
   (define-key python-mode-map (kbd "C-c C-p") 'run-python-in-vterm))
 
-
-;; 代码格式化: Black (推荐) 或 autopep8 (二选一)
+;; Python 格式化工具
 (use-package python-black
   :demand t
   :after python
   :hook (python-mode . python-black-on-save-mode-enable-dwim))
 
-;; (use-package py-autopep8
-;;   :ensure t
-;;   :hook (python-mode . py-autopep8-enable-on-save)) ;; 如果要用 autopep8，取消注释
-
-;; 调试支持 (DAP)
+;; Python 调试
 (use-package dap-mode
   :ensure t
   :after lsp-mode
@@ -65,29 +59,30 @@
   (dap-mode 1)
   (dap-ui-mode 1))
 
-;; Python 测试 (pytest)
+;; Python 测试
 (use-package pytest
   :ensure t
   :config
   (setq pytest-command "pytest"))
 
+;; 缩进高亮
 (use-package highlight-indent-guides
   :straight t
   :hook (python-mode . highlight-indent-guides-mode)
   :config
-  (setq highlight-indent-guides-method 'character)  ;; 采用竖线风格
-  (setq highlight-indent-guides-responsive 'top))   ;; 仅高亮当前层级
+  (setq highlight-indent-guides-method 'fill)
+  (setq highlight-indent-guides-responsive 'top))
 
+;; 代码折叠
 (add-hook 'python-mode-hook #'hs-minor-mode)
 (defun my-python-hide-all ()
   "打开 Python 文件时自动折叠所有代码块。"
-  (hs-minor-mode 1)  ;; 启用 hs-minor-mode
-  (hs-hide-all))      ;; 折叠所有代码块
+  (hs-minor-mode 1)
+  (run-with-timer 0.5 nil #'hs-hide-all))
 (add-hook 'python-mode-hook #'my-python-hide-all)
 
-(setq python-indent-offset 4)  ;; Python 代码缩进 4 个空格
-(electric-indent-mode 1)
-(add-hook 'python-mode-hook 'display-line-numbers-mode) ;开启行号
+;; 行号显示
+(add-hook 'python-mode-hook 'display-line-numbers-mode)
 
 
 
