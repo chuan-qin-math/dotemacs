@@ -112,15 +112,27 @@
   "Default font size.")
 
 (defvar phundrak/default-font-name "Cascadia Code"
-  "Default font.")
+  "Default (English) font.")
+
+(defvar phundrak/default-font-size 140
+  "Default font size in 1/10 pt.")
+
+(defvar phundrak/cjk-font-name "PingFang SC"
+  "Default font for Chinese characters.")
 
 (defun my/set-font ()
   (when (find-font (font-spec :name phundrak/default-font-name))
     (set-face-attribute 'default nil
                         :font phundrak/default-font-name
-                        :height phundrak/default-font-size)))
+                        :height phundrak/default-font-size))
+  (when (find-font (font-spec :name phundrak/cjk-font-name))
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font t charset
+                        (font-spec :family phundrak/cjk-font-name
+                                   :size (/ phundrak/default-font-size 10.0))))))
 
 (my/set-font)
+
 (add-hook 'server-after-make-frame-hook #'my/set-font)
 
 

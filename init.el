@@ -143,8 +143,9 @@
 
  (require 'init-pdftools)
 ;; (require 'init-latex-packages)
-(require 'init-latex-config)
+ (require 'init-latex-config)
 ;; (require 'my-pdftools)
+;; (require 'init-latex-config2)
 ;; personal
 (require 'init-keybindings)
 
