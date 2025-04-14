@@ -9,7 +9,7 @@ This is my emacs setting used for macOS system(x86_64 or arm64), not tested for 
 
 and other sources (spacemacs, doom...)  on the internet.
 
-(14/04/2025) Stop using pdftools, change to eafpdfviewer for reading + skim for TeX.
+(14/04/2025) Stop using pdftools, change to default pdfviewer for reading + skim for TeX.
 Need to do:
 
 M-x nerd-icons-install-fonts (if some modeline fonts are missings)

@@ -106,8 +106,6 @@
 
 (setq my-is-terminal (not window-system))
 
-(add-to-list 'load-path "~/.vanilla/site-lisp/emacs-application-framework/")
-(require 'eaf)
 
 ;; Core
 (require 'init-basic)
@@ -143,7 +141,7 @@
 (require 'init-python)
 
  ;; (require 'init-pdftools)
-(require 'init-eafpdfviewer)
+;; (require 'init-eafpdfviewer)
 ;; (require 'init-latex-packages)
 (require 'init-latex-config)
 ;; (require 'my-pdftools)
