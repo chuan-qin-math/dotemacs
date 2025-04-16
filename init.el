@@ -156,7 +156,7 @@
 ;; weather
 (require 'init-weather)
 
-
+ (with-eval-after-load 'quail (defun quail-completion ()))
 
 
 (defun efs/display-startup-time ()

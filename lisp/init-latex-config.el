@@ -358,9 +358,11 @@
   (defun my-latex-mode-setup ()
     "Optimize company backends for LaTeX mode."
     (setq-local company-backends
-                (list '(cdlatex-tab company-auctex-macros company-auctex-symbols
-                                    company-auctex-environments company-math-symbols-latex)
-                       company-backends
+                (list '(cdlatex-tab company-auctex-macros )
+                      company-backends
+                      ;; company-auctex-symbols
+                      ;; company-auctex-environments
+                      ;; company-math-symbols-latex
                       ))) ;; 直接使用已有 backends，避免 `append`
 
 
