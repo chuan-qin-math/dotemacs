@@ -156,7 +156,15 @@
 ;; weather
 (require 'init-weather)
 
- (with-eval-after-load 'quail (defun quail-completion ()))
+(advice-add 'quail-input-method :around
+            (lambda (orig key)
+              "Disable quail-input-method in TeX and LaTeX formulas. Uses AUCTeX."
+              (if (and (eq major-mode 'latex-mode)
+                       (fboundp 'texmathp)
+                       (texmathp))
+                  (let ((overriding-local-map t))
+                    (funcall orig key))
+                (funcall orig key))))
 
 
 (defun efs/display-startup-time ()
