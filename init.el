@@ -159,12 +159,15 @@
 (advice-add 'quail-input-method :around
             (lambda (orig key)
               "Disable quail-input-method in TeX and LaTeX formulas. Uses AUCTeX."
-              (if (and (eq major-mode 'latex-mode)
+              (if (and (eq major-mode '(latex-mode python-mode) )
                        (fboundp 'texmathp)
                        (texmathp))
                   (let ((overriding-local-map t))
                     (funcall orig key))
                 (funcall orig key))))
+
+ (with-eval-after-load 'quail (defun quail-completion ()))
+
 
 
 (defun efs/display-startup-time ()
