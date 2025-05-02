@@ -114,8 +114,8 @@
 (require 'init-evil)
 
 (require 'init-tools)
-(require 'init-writing)
-(require 'init-reading)
+;(require 'init-writing)
+;(require 'init-reading)
 
 ;; uis
 (require 'init-ui)
@@ -123,12 +123,11 @@
 (require 'init-better-defaults)
 
 ;; Tools
-(require 'init-org)
+;(require 'init-org)
 (require 'init-git)
 (require 'init-ctags)
-(require 'init-syntaxcheck)
+;(require 'init-syntaxcheck)
 (require 'init-snippets)
-
 (require 'init-lsp)
 
 ;; Frameworks
@@ -140,7 +139,7 @@
 (require 'init-lisp)
 (require 'init-python)
 
- ;; (require 'init-pdftools)
+;; (require 'init-pdftools)
 ;; (require 'init-eafpdfviewer)
 ;; (require 'init-latex-packages)
 (require 'init-latex-config)
@@ -154,7 +153,7 @@
 (require 'init-programming)
 
 ;; weather
-(require 'init-weather)
+;(require 'init-weather)
 
 (advice-add 'quail-input-method :around
             (lambda (orig key)
