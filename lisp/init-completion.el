@@ -7,14 +7,13 @@
 (use-package company
   :ensure t
   :custom
-   (company-backends
-    '((company-yasnippet)
-    (company-capf :with company-dabbrev-code company-keywords)
-    (company-ispell)
-    (company-capf :with company-yasnippet)
-    (company-files :with company-yasnippet)
-    (company-dabbrev)
-    ))
+  (company-backends
+   '((company-yasnippet)
+     (company-capf :with company-dabbrev-code company-keywords company-yasnippet)
+     ;; (company-ispell)
+     ;; (company-files :with company-yasnippet)
+     (company-dabbrev)
+     ))
 
   ;; dabbrev 不改变大小写
   ;; (company-dabbrev-ignore-case nil)
@@ -26,13 +25,14 @@
   ;;       ("M-/" . company-complete)
   ;;       ("<tab>" . company-indent-or-complete-common)
   ;;       ("C-c C-/" . company-other-backend))
- :init (global-company-mode)
+  :init (global-company-mode)
   :config
+   (setq company-dabbrev-other-buffers nil)
   (setq company-minimum-prefix-length 2
         company-idle-delay 0.2 ;; 0.1s后开始补全
         company-selection-wrap-around t
         )
-    (set-face-attribute 'company-tooltip nil :inherit 'fixed-pitch))
+  (set-face-attribute 'company-tooltip nil :inherit 'fixed-pitch))
 
 (setq auto-completion-tab-key-behavior nil)
 
