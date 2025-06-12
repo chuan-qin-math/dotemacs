@@ -5,37 +5,7 @@
 ;;; Packages
 
 (use-package company
-  :ensure t
-  :custom
-  (company-backends
-   '((company-yasnippet)
-     (company-capf :with company-dabbrev-code company-keywords company-yasnippet)
-     ;; (company-ispell)
-     ;; (company-files :with company-yasnippet)
-     (company-dabbrev)
-     ))
-
-  ;; dabbrev 不改变大小写
-  ;; (company-dabbrev-ignore-case nil)
-  ;; (company-dabbrev-downcase nil)
-  ;; (company-transformers '(company-sort-by-occurrence company-sort-by-backend-importance))
-  ;; (company-show-quick-access 'left)
-  ;; :bind
-  ;; (:map company-active-map
-  ;;       ("M-/" . company-complete)
-  ;;       ("<tab>" . company-indent-or-complete-common)
-  ;;       ("C-c C-/" . company-other-backend))
-  :init (global-company-mode)
-  :config
-   (setq company-dabbrev-other-buffers nil)
-  (setq company-minimum-prefix-length 2
-        company-idle-delay 0.2 ;; 0.1s后开始补全
-        company-selection-wrap-around t
-        )
-  (set-face-attribute 'company-tooltip nil :inherit 'fixed-pitch))
-
-(setq auto-completion-tab-key-behavior nil)
-
+  :ensure t)
 
 (defun nasy/orderless-dispatch-flex-first (_pattern index _total)
   "orderless-flex for corfu."
@@ -60,7 +30,7 @@
     (setq corfu-min-width 80)
     (setq corfu-max-width 100)
     (setq corfu-auto-delay 0.2)
-    (setq corfu-auto-prefix 2)
+    (setq corfu-auto-prefix 1)
     (setq corfu-on-exact-match nil)
     (global-corfu-mode)
     (corfu-popupinfo-mode)
@@ -78,7 +48,7 @@
       (interactive)
       (let ((completion-extra-properties corfu--extra)
             completion-cycle-threshold completion-cycling)
-        ;; (toggle-chinese-search)
+        (toggle-chinese-search)
         (apply #'consult-completion-in-region completion-in-region--data)))
     (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
 
@@ -243,12 +213,26 @@
    consult-narrow-key "<"
    consult-line-numbers-widen t
    consult-async-min-input 2
-   consult-async-refresh-delay  0.15
+   consult-async-refresh-delay 0.15
    consult-async-input-throttle 0.2
    consult-async-input-debounce 0.1
    consult-line-start-from-top t)
 
 
+  (defun my-project-root ()
+    (when-let ((project (project-current nil)))
+      (if (fboundp #'project-root)
+          (project-root project)
+        (car (project-roots project)))))
+
+  (define-advice consult--buffer-pair (:around (_ buffer) show-path)
+    "Also show path for file buffers so the user can filter them by path."
+    (let ((dir (or (my-project-root) default-directory)))
+      (if-let ((path (buffer-file-name buffer)))
+          (progn (when (file-in-directory-p path dir)
+                   (setq path (file-relative-name path dir)))
+                 (cons path buffer))
+        (cons (buffer-name buffer) buffer))))
 
   (consult-customize
    consult-theme
@@ -298,9 +282,9 @@
   :config
   (define-key embark-identifier-map "R" #'consult-ripgrep)
   (define-key embark-identifier-map (kbd "C-s") #'consult-line)
-  ;; (define-key embark-region-map "D" 'youdao-dictionary-search-async)
+  (define-key embark-region-map "D" 'youdao-dictionary-search-async)
 
-  ;; (define-key embark-file-map (kbd "E") #'consult-directory-externally)
+  (define-key embark-file-map (kbd "E") #'consult-directory-externally)
   (define-key embark-file-map (kbd "U") #'consult-snv-unlock)
   (define-key embark-file-map (kbd "H") #'my-calculate-file-md5)
   )

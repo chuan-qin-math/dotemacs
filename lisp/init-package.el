@@ -49,12 +49,12 @@
 ;; Set ELPA packages
 ;; (set-package-archives zilongshanren-package-archives nil nil t)
 (require 'package)
+
 (setq package-archives
-      '(("gnu"   . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-        ("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-        ("org"   . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-	("nongnu" . "https://elpa.nongnu.org/nongnu/") ))
-(package-initialize)
+      '(("gnu"   . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("org"   . "https://orgmode.org/elpa/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
 
 ;; Initialize packages

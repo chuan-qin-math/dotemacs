@@ -288,12 +288,22 @@
   (TeX-source-correlate-method 'synctex) ; 设置源代码关联方法为 SyncTeX
   (TeX-source-correlate-start-server t)  ; 启动服务器以支持关联
    (TeX-view-program-selection '((output-pdf "Skim"))) ; 设置 PDF 查看程序
-   (TeX-view-program-list
-    '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o")))
-                                        ; Skim 配置
-  ;; (TeX-view-program-selection '((output-pdf "PDF Tools")))
-                                        ; 使用 pdf-tools 预览 pdf
+    (setq TeX-view-program-list
+          '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o") ; Skim 配置
+            ("PDF Tools" TeX-pdf-tools-sync-view)) ; Skim 配置
+          )
+  ;; 设置默认查看程序为 PDF Tools
+(setq TeX-view-program-selection
+      '((output-pdf "PDF Tools")))
 
+;; 添加自定义命令以在 C-c C-c 中提供 Skim 选项
+(add-to-list 'TeX-command-list
+             '("View with Skim" "Skim" TeX-run-view nil t
+               :help "View PDF with Skim"))
+
+;; 确保 TeX-source-correlate-mode 启用，以便同步 PDF 和 TeX 源文件
+(setq TeX-source-correlate-mode t)
+(setq TeX-source-correlate-method 'synctex)
 
 
 

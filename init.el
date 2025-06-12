@@ -84,6 +84,12 @@
 ;; Packages
 ;; Without this comment Emacs25 adds (package-initialize) here
 (require 'init-package)
+(setq package-archives
+      '(("gnu"   . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("org"   . "https://orgmode.org/elpa/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+
 
 (use-package benchmark-init
   :ensure t
@@ -139,7 +145,7 @@
 (require 'init-lisp)
 (require 'init-python)
 
-;; (require 'init-pdftools)
+(require 'init-pdftools)
 ;; (require 'init-eafpdfviewer)
 ;; (require 'init-latex-packages)
 (require 'init-latex-config)

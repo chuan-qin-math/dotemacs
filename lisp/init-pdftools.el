@@ -65,13 +65,14 @@
   (pdf-tools-install)
   (require 'pdf-annot)
   (require 'pdf-history)
-  (with-eval-after-load 'pdf-view
-    ;; (csetq pdf-view-midnight-colors '("#657b83" . "#fdf6e3"))
-                                        ;sepia color set
-    ;; (csetq pdf-view-midnight-colors '("#ffffff" . "#1e1e1e")) ;white-black
-    (csetq pdf-view-midnight-colors '("#000000" . "#fffff0"))
-                                        ;old paper
-    )
+  ;; (with-eval-after-load 'pdf-view
+  ;;   ;; (csetq pdf-view-midnight-colors '("#657b83" . "#fdf6e3"))
+  ;;                                       ;sepia color set
+  ;;    ;; (csetq pdf-view-midnight-colors '("#ffffff" . "#1e1e1e"))
+  ;;                                       ;white-black
+  ;;   ;; (csetq pdf-view-midnight-colors '("#000000" . "#fffff0"))
+  ;;                                       ;old paper
+  ;;   )
   (setq pdf-view-use-scaling t
         pdf-view-use-imagemagick nil)
   (add-hook 'pdf-view-mode-hook 'auto-revert-mode)
